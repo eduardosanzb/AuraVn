@@ -1,0 +1,27 @@
+<ion-view view-title="">
+  <ion-content>
+    <ion-slide-box ng-init="lockSlide()" show-pager="false">
+      <ion-slide>
+        <div class="big-container">
+          <h1>Tu Vestido</h1>
+          <h2>Selecciona tu tipo de Vestido</h2>
+          <div class="row responsive-sm img-container">
+            <div class="col" ng-click="dressSelected()"><img src="img/dress.jpg"><h4>Sencillo / Liso</h4></div>
+            <div class="col"><img src="img/dress.jpg"><h4>Romantico Clasico</h4></div>
+            <div class="col"><img src="img/dress.jpg"><h4>Juvenil / Strapless / Con volumen</h4></div>
+          </div>
+        </div>
+      </ion-slide>
+      <ion-slide>
+        <div class="row"><div class="button" ng-click="goBack()">Atras</div></div>
+        
+      </ion-slide>
+      <ion-slide>
+        <div class="box pink"><h1>Tu Altura</h1></div>
+      </ion-slide>
+      <ion-slide>
+        <div class="box pink"><h1>Tu Peinado</h1></div>
+      </ion-slide>
+    </ion-slide-box>
+  </ion-content>
+</ion-view>
