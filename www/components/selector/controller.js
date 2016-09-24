@@ -2,8 +2,9 @@ angular.module('veils.controllers')
 .controller('SelectorController',SelectorController);
 SelectorController.$inject = ["$rootScope", "$scope", "$state", "$ionicModal", "$ionicLoading", "$localStorage", "$ionicPlatform","$ionicSlideBoxDelegate","$firebaseArray","$localStorage"];
 
-function SelectorController($rootScope, $scope, $state, $ionicModal, $ionicLoading, $localStorage, $ionicPlatform,$ionicSlideBoxDelegate, $firebaseArray, $localStorage) {
+function SelectorController($rootScope, $scope, $state, $ionicModal, $ionicLoading, $localStorage, $ionicPlatform,$ionicSlideBoxDelegate, $firebaseArray, $localStorage, $ionicSlides) {
   $scope.selection = {};
+  $scope.currentIndex = 0;
   /**/
 
   /* NAVIGATIONS AND SLIDER CONFIGURATIONS OPTIONS */
@@ -19,14 +20,31 @@ function SelectorController($rootScope, $scope, $state, $ionicModal, $ionicLoadi
 	  speed: 500
   }
   $scope.$on('$ionicSlides.sliderInitialized', function(event, data){
+  	//data.slider.lockSwipes();
+  	$scope.flagDafuq = (data.slider.activeIndex === 0)? false: true;
 	$ionicSlideBoxDelegate.enableSlide(false);
 	$scope.slider = data.slider;
+	console.debug($scope.slider)
+  })
+  $scope.$on('$ionicSlides.slideChangeStart', function(event, data){
+	  console.log("Starting to change slide")
+  })
+  $scope.$on('$ionicSlides.slideChangeEnd', function(event, data){
+	  console.log("Now: CurrentIdx = " + data.slider.activeIndex + " Previous: " + data.slider.previousIndex)
+	  $scope.flagDafuq = (data.slider.activeIndex === 0)? false: true;
+	  $scope.currentIndex = data.slider.activeIndex;
+	  $scope.previousIndex = data.slider.previousIndex;
+	  $scope.$apply()
   })
   $scope.goBack = function(){
-    /* Strategy: 
-     * 1.- Go back to the previous slide.
-     */
-    $ionicSlideBoxDelegate.previous();
+    console.log("Cuz we`re going backwards baby")
+    $scope.slider.slideTo($scope.currentIndex-1)
+  }
+  $scope.nextSlide = function(){
+	  console.debug($scope.slider)
+	  console.log("Moving to the next")
+	  $scope.slider.slideTo($scope.currentIndex+1)
+
   }
 
   /* SELECTION FUNCTIONS */
@@ -37,20 +55,20 @@ function SelectorController($rootScope, $scope, $state, $ionicModal, $ionicLoadi
      * 3.- In the last slide, we need to do several thins. Goto Function($scope.hairSelected).
      */
   $scope.dressSelected = function(selection){
-    $scope.selection.dress = selection;
-    $ionicSlideBoxDelegate.next();
+    $scope.selection.dressStyle = selection;
+    $scope.nextSlide();
   }
   $scope.dressStyle = function(selection){
-    $scope.selection.dress.type = selection;
-    $ionicSlideBoxDelegate.next();
+    $scope.selection.embroidery = selection
+    $scope.nextSlide();
   }
   $scope.bodySelected = function(selection){
     $scope.selection.body = selection;
-    $ionicSlideBoxDelegate.next();
+    $scope.nextSlide();
   }
   $scope.heigthSelected = function(selection){
     $scope.selection.heigth = selection;
-    $ionicSlideBoxDelegate.next();
+    $scope.nextSlide();
   }
   $scope.hairSelected = function(selection){
     /* Strategy: 

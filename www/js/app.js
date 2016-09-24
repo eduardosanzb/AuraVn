@@ -24,6 +24,7 @@ angular.module('veils', ['ionic','veils.controllers','veils.services','veils.fil
 })
 .config(function($stateProvider, $ionicConfigProvider, $urlRouterProvider){
   $ionicConfigProvider.backButton.text('').icon('ion-ios-arrow-thin-left');
+  $ionicConfigProvider.navBar.alignTitle('center')
   $stateProvider.state('home',{
     url: '/home',
     templateUrl: 'components/home/view.html',

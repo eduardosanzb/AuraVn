@@ -9851,10 +9851,10 @@ a.button {
   padding: 10px 10px 0px 10px; }
 
 .img-container img {
-  height: 350px;
   display: block;
   margin-right: auto;
-  margin-left: auto; }
+  margin-left: auto;
+  max-height: 65%; }
 
 .img-container h4 {
   text-align: center; }

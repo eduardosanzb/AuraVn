@@ -45,21 +45,85 @@
   </ion-content>
 </ion-view>
 -->
- <ion-nav-bar class="bar-positive">
-  </ion-nav-bar>
-
-<ion-view view-title="">
-	<ion-content scroll="false">
+<ion-view view-title="Diseñando tu Velo">
+    <ion-nav-buttons side="left">
+      <button class="button icon ion-chevron-left" ng-click="goBack()" ng-show="flagDafuq"></button>
+    </ion-nav-buttons>        
+    <ion-nav-buttons side="right">
+      <button class="button button-assertive" ng-click="nextSlide()">
+        RightButton
+      </button>
+    </ion-nav-buttons>  
+	<ion-content scroll="false" class="has-header padding">
 	  <ion-slides  options="options" slider="data.slider">
+	  
+	    <!--  Slide for the selection.dress    -->
 	    <ion-slide-page>
-	      <h1>Hola llalo</h1>
-	    </ion-slide-page>
-	    <ion-slide-page>
-	      <div class="box yellow"><h1>YELLOW</h1></div>
-	    </ion-slide-page>
-	    <ion-slide-page>
-	      <div class="box pink"><h1>PINK</h1></div>
-	    </ion-slide-page>
+	      	<div class="big-container">
+	          <h1>Tu Vestido</h1>
+	          <h2>Selecciona tu tipo de Vestido</h2>
+	          <div class="row responsive-sm img-container">
+	            <div class="col" ng-click="dressSelected('A')"><img src="img/dress-styles/CORTEA.png"><footer><h4>Corte A</h4></footer></div>
+				<div class="col" ng-click="dressSelected('sirena')"><img src="img/dress-styles/SIRENA.png"><h4>Sirena</h4></div>
+				<div class="col" ng-click="dressSelected('recto')"><img src="img/dress-styles/RECTO.png"><h4>Recto</h4></div>
+	            <div class="col" ng-click="dressSelected('griego')"><img src="img/dress-styles/GRIEGO.png"><h4>Griego</h4></div>
+	            <div class="col" ng-click="dressSelected('princesa')"><img src="img/dress-styles/PRINCESA.png"><h4>Princesa</h4></div>
+	          </div>
+         	</div>
+        </ion-slide-page>
+		<!--  Slide for the selection.embroidery    -->
+        <ion-slide-page>
+	      	<div class="big-container">
+	          <h1>Tu Vestido</h1>
+	          <h2>Selecciona tu acabado del vestido</h2>
+	          <div class="row responsive-sm img-container">
+	            <div class="col" ng-click="dressStyle(false)"><img src="img/dress-styles/CORTEA.png"><footer><h4>Sin Bordado</h4></footer></div>
+				<div class="col" ng-click="dressStyle(true)"><img src="img/dress-styles/SIRENA.png"><h4>Con Bordado</h4></div>
+	          </div>
+         	</div>
+        </ion-slide-page>
+        
+        <!--  Slide for the selection.face    -->
+        <ion-slide-page>
+	      	<div class="big-container">
+	          <h1>Tu Rostro</h1>
+	          <h2>Selecciona tu tipo de rostro</h2>
+	          <div class="row responsive-sm img-container">
+	            <div class="col" ng-click="faceSelected(false)"><img src="img/dress-styles/CORTEA.png"><footer><h4>Ovalado</h4></footer></div>
+	            <div class="col" ng-click="faceSelected(false)"><img src="img/dress-styles/CORTEA.png"><footer><h4>Cuadrado</h4></footer></div>
+	            <div class="col" ng-click="faceSelected(false)"><img src="img/dress-styles/CORTEA.png"><footer><h4>Corazón</h4></footer></div>
+	            <div class="col" ng-click="faceSelected(false)"><img src="img/dress-styles/CORTEA.png"><footer><h4>Redondo</h4></footer></div>
+	          </div>
+         	</div>
+        </ion-slide-page>
+        
+        <!--  Slide for the selection.hair    -->
+        <ion-slide-page>
+	      	<div class="big-container">
+	          <h1>Tu Peinado</h1>
+	          <h2>Selecciona que peinado usaras en TU gran día</h2>
+	          <div class="row responsive-sm img-container">
+	            <div class="col" ng-click="hairSelected('sueltoLargo')"><img src="img/hair-style/CORTEA.png"><footer><h4>Suelto Largo</h4></footer></div>
+	            <div class="col" ng-click="hairSelected('sueltoCorto')"><img src="img/hair-style/CORTEA.png"><footer><h4>Suelto Corto</h4></footer></div>
+	            <div class="col" ng-click="hairSelected('moñoAlto')"><img src="img/hair-style/CORTEA.png"><footer><h4>Moño Alto</h4></footer></div>
+	            <div class="col" ng-click="hairSelected('moñoBajo')"><img src="img/hair-style/CORTEA.png"><footer><h4>Moño Bajo</h4></footer></div>
+	          </div>
+         	</div>
+        </ion-slide-page>
+		
+		<!--  Slide for the selection.height    -->
+        <ion-slide-page>
+	      	<div class="big-container">
+	          <h1>Tu Peinado</h1>
+	          <h2>Selecciona que peinado usaras en TU gran día</h2>
+	          <div class="row responsive-sm img-container">
+	            <div class="col" ng-click="hairSelected('sueltoLargo')"><img src="img/hair-style/CORTEA.png"><footer><h4>Alta</h4></footer></div>
+	            <div class="col" ng-click="hairSelected('sueltoCorto')"><img src="img/hair-style/CORTEA.png"><footer><h4>Promedia</h4></footer></div>
+	            <div class="col" ng-click="hairSelected('moñoAlto')"><img src="img/hair-style/CORTEA.png"><footer><h4>Bajita</h4></footer></div>
+	          </div>
+         	</div>
+        </ion-slide-page>
+        
 	  </ion-slides>
 	</ion-content>
 </ion-view>
