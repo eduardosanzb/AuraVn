@@ -1,18 +1,37 @@
+<!--
 <ion-view view-title="">
-  <ion-content>
+  <ion-content scroll="false">
     <ion-slide-box ng-init="lockSlide()" show-pager="false">
       <ion-slide>
         <div class="big-container">
           <h1>Tu Vestido</h1>
           <h2>Selecciona tu tipo de Vestido</h2>
           <div class="row responsive-sm img-container">
-            <div class="col" ng-click="dressSelected()"><img src="img/dress.jpg"><h4>Sencillo / Liso</h4></div>
-            <div class="col"><img src="img/dress.jpg"><h4>Romantico Clasico</h4></div>
-            <div class="col"><img src="img/dress.jpg"><h4>Juvenil / Strapless / Con volumen</h4></div>
+            <div class="col" ng-click="dressSelected('simple')"><img src="img/dress.jpg"><h4>Corte A</h4></div>
+			<div class="col" ng-click="dressSelected('simple')"><img src="img/dress.jpg"><h4>Sirena</h4></div>
+			<div class="col" ng-click="dressSelected('simple')"><img src="img/dress.jpg"><h4>Recto</h4></div>
+            <div class="col" ng-click="dressSelected('classic')"><img src="img/dress.jpg"><h4>Griego</h4></div>
+            <div class="col" ng-click="dressSelected('strapless')"><img src="img/dress.jpg"><h4>Princesa</h4></div>
           </div>
         </div>
       </ion-slide>
       <ion-slide>
+        <div class="big-container">
+          <h1>Tu Vestido</h1>
+          <h2>Selecciona el acabado de tu Vestido</h2>
+          <div class="row responsive-sm img-container">
+            <div class="col" ng-click="dressStyle('simple')"><img src="img/dress.jpg"><h4>Cargado</h4></div>
+			<div class="col" ng-click="dressStyle('simple')"><img src="img/dress.jpg"><h4>Sencillo</h4></div>
+        </div>
+      </ion-slide>
+      <ion-slide>
+      <h1>Tu Altura</h1>
+      <h2>Selecciona el que mas se ameje a tu altura</h2>
+      <div class="row responsive-sm img-container">
+            <div class="col" ng-click="dressSelected('simple')"><img src="img/dress.jpg"><h4>Sencillo / Liso</h4></div>
+            <div class="col" ng-click="dressSelected('classic')"><img src="img/dress.jpg"><h4>Romantico Clasico</h4></div>
+            <div class="col" ng-click="dressSelected('strapless')"><img src="img/dress.jpg"><h4>Juvenil / Strapless / Con volumen</h4></div>
+      </div>
         <div class="row"><div class="button" ng-click="goBack()">Atras</div></div>
         
       </ion-slide>
@@ -24,4 +43,23 @@
       </ion-slide>
     </ion-slide-box>
   </ion-content>
+</ion-view>
+-->
+ <ion-nav-bar class="bar-positive">
+  </ion-nav-bar>
+
+<ion-view view-title="">
+	<ion-content scroll="false">
+	  <ion-slides  options="options" slider="data.slider">
+	    <ion-slide-page>
+	      <h1>Hola llalo</h1>
+	    </ion-slide-page>
+	    <ion-slide-page>
+	      <div class="box yellow"><h1>YELLOW</h1></div>
+	    </ion-slide-page>
+	    <ion-slide-page>
+	      <div class="box pink"><h1>PINK</h1></div>
+	    </ion-slide-page>
+	  </ion-slides>
+	</ion-content>
 </ion-view>
