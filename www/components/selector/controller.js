@@ -22,6 +22,7 @@ function SelectorController($rootScope, $scope, $state, $ionicModal, $ionicLoadi
   $scope.$on('$ionicSlides.sliderInitialized', function(event, data){
   	//data.slider.lockSwipes();
   	$scope.flagDafuq = (data.slider.activeIndex === 0)? false: true;
+    
 	$ionicSlideBoxDelegate.enableSlide(false);
 	$scope.slider = data.slider;
 	console.debug($scope.slider)
@@ -68,6 +69,10 @@ function SelectorController($rootScope, $scope, $state, $ionicModal, $ionicLoadi
   }
   $scope.heigthSelected = function(selection){
     $scope.selection.heigth = selection;
+    $scope.nextSlide();
+  }
+  $scope.faceSelected = function(selection){
+    $scope.selection.face = selection;
     $scope.nextSlide();
   }
   $scope.hairSelected = function(selection){

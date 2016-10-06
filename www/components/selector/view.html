@@ -1,50 +1,3 @@
-<!--
-<ion-view view-title="">
-  <ion-content scroll="false">
-    <ion-slide-box ng-init="lockSlide()" show-pager="false">
-      <ion-slide>
-        <div class="big-container">
-          <h1>Tu Vestido</h1>
-          <h2>Selecciona tu tipo de Vestido</h2>
-          <div class="row responsive-sm img-container">
-            <div class="col" ng-click="dressSelected('simple')"><img src="img/dress.jpg"><h4>Corte A</h4></div>
-			<div class="col" ng-click="dressSelected('simple')"><img src="img/dress.jpg"><h4>Sirena</h4></div>
-			<div class="col" ng-click="dressSelected('simple')"><img src="img/dress.jpg"><h4>Recto</h4></div>
-            <div class="col" ng-click="dressSelected('classic')"><img src="img/dress.jpg"><h4>Griego</h4></div>
-            <div class="col" ng-click="dressSelected('strapless')"><img src="img/dress.jpg"><h4>Princesa</h4></div>
-          </div>
-        </div>
-      </ion-slide>
-      <ion-slide>
-        <div class="big-container">
-          <h1>Tu Vestido</h1>
-          <h2>Selecciona el acabado de tu Vestido</h2>
-          <div class="row responsive-sm img-container">
-            <div class="col" ng-click="dressStyle('simple')"><img src="img/dress.jpg"><h4>Cargado</h4></div>
-			<div class="col" ng-click="dressStyle('simple')"><img src="img/dress.jpg"><h4>Sencillo</h4></div>
-        </div>
-      </ion-slide>
-      <ion-slide>
-      <h1>Tu Altura</h1>
-      <h2>Selecciona el que mas se ameje a tu altura</h2>
-      <div class="row responsive-sm img-container">
-            <div class="col" ng-click="dressSelected('simple')"><img src="img/dress.jpg"><h4>Sencillo / Liso</h4></div>
-            <div class="col" ng-click="dressSelected('classic')"><img src="img/dress.jpg"><h4>Romantico Clasico</h4></div>
-            <div class="col" ng-click="dressSelected('strapless')"><img src="img/dress.jpg"><h4>Juvenil / Strapless / Con volumen</h4></div>
-      </div>
-        <div class="row"><div class="button" ng-click="goBack()">Atras</div></div>
-        
-      </ion-slide>
-      <ion-slide>
-        <div class="box pink"><h1>Tu Altura</h1></div>
-      </ion-slide>
-      <ion-slide>
-        <div class="box pink"><h1>Tu Peinado</h1></div>
-      </ion-slide>
-    </ion-slide-box>
-  </ion-content>
-</ion-view>
--->
 <ion-view view-title="Diseñando tu Velo">
     <ion-nav-buttons side="left">
       <button class="button icon ion-chevron-left" ng-click="goBack()" ng-show="flagDafuq"></button>
@@ -77,8 +30,8 @@
 	          <h1>Tu Vestido</h1>
 	          <h2>Selecciona tu acabado del vestido</h2>
 	          <div class="row responsive-sm img-container">
-	            <div class="col" ng-click="dressStyle(false)"><img src="img/dress-styles/CORTEA.png"><footer><h4>Sin Bordado</h4></footer></div>
-				<div class="col" ng-click="dressStyle(true)"><img src="img/dress-styles/SIRENA.png"><h4>Con Bordado</h4></div>
+	            <div class="col" ng-click="dressStyle(false)"><img src="img/dress-finnish/STYLE_A.jpg"><h4><ul><li>Encajes</li><li>Bordados</li><li>Pedreria</li></ul></h4></div>
+				      <div class="col" ng-click="dressStyle(true)"><img src="img/dress-finnish/STYLE_B.jpg"><h4>Liso</h4></div>
 	          </div>
          	</div>
         </ion-slide-page>
@@ -89,10 +42,10 @@
 	          <h1>Tu Rostro</h1>
 	          <h2>Selecciona tu tipo de rostro</h2>
 	          <div class="row responsive-sm img-container">
-	            <div class="col" ng-click="faceSelected(false)"><img src="img/dress-styles/CORTEA.png"><footer><h4>Ovalado</h4></footer></div>
-	            <div class="col" ng-click="faceSelected(false)"><img src="img/dress-styles/CORTEA.png"><footer><h4>Cuadrado</h4></footer></div>
-	            <div class="col" ng-click="faceSelected(false)"><img src="img/dress-styles/CORTEA.png"><footer><h4>Corazón</h4></footer></div>
-	            <div class="col" ng-click="faceSelected(false)"><img src="img/dress-styles/CORTEA.png"><footer><h4>Redondo</h4></footer></div>
+	            <div class="col" ng-click="faceSelected(false)"><img src="img/face-shape/oval.jpg"><footer><h4>Ovalado</h4></footer></div>
+	            <div class="col" ng-click="faceSelected(false)"><img src="img/face-shape/rectangle.jpg"><footer><h4>Cuadrado</h4></footer></div>
+	            <div class="col" ng-click="faceSelected(false)"><img src="img/face-shape/heart.jpg"><footer><h4>Corazón</h4></footer></div>
+	            <div class="col" ng-click="faceSelected(false)"><img src="img/face-shape/round.jpg"><footer><h4>Redondo</h4></footer></div>
 	          </div>
          	</div>
         </ion-slide-page>

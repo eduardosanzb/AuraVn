@@ -4,8 +4,9 @@
 // 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
 // the 2nd parameter is an array of 'requires'
 angular.module('veils', ['ionic','veils.controllers','veils.services','veils.filters','firebase'])
-.run(function($ionicPlatform) {
+.run(function($ionicPlatform, $rootScope) {
   $ionicPlatform.ready(function() {
+    console.log('Running platform')
     // Initialize Firebase
     if(window.cordova && window.cordova.plugins.Keyboard) {
       // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
@@ -20,6 +21,13 @@ angular.module('veils', ['ionic','veils.controllers','veils.services','veils.fil
     if(window.StatusBar) {
       StatusBar.styleDefault();
     }
+
+    if(window.Connection){
+
+      $rootScope.connectionFlag = (navigator.connection.type == Connection.NONE) ? false : true;
+      console.log($rootScope)
+    }
+
   });
 })
 .config(function($stateProvider, $ionicConfigProvider, $urlRouterProvider){
