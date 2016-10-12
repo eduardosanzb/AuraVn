@@ -7,20 +7,21 @@ function FeedbackController($rootScope, $scope, $state, $ionicModal, $ionicLoadi
   $scope.selection = $localStorage.getObject('theSelection')
 
 
-  function saveToFirebase(){
+  function saveToFirebase(mail){
+    console.log(mail)
+    mail = mail ? mail: 'anonimo'
     var ref = firebase.database().ref()
-      var selections = $firebaseArray(ref.child('selections'))
-      var decisions = $firebaseArray(ref.child('decisions'))
-      console.log()
-      selections.$add( $scope.selection).then(function(ref){
+    var array = $firebaseArray(ref.child('expobodaOct'))
+    var objectToPush = {
+      selections : $scope.selection,
+      decisions : $scope.decision,
+      mail: mail
+    }
+    console.log(objectToPush)
+    array.$add(objectToPush).then(function(ref){
         var id = ref.key;
         console.log("added record with id " + id);
-        selections.$indexFor(id); // returns location in the array
-      });
-      decisions.$add( $scope.decision).then(function(ref){
-        var id = ref.key;
-        console.log("added record with id " + id);
-        decisions.$indexFor(id); // returns location in the array
+        array.$indexFor(id); // returns location in the array
       });
   }
   function clearLocalStorage(){
@@ -39,7 +40,7 @@ function FeedbackController($rootScope, $scope, $state, $ionicModal, $ionicLoadi
      if(true){
      //if($rootScope.connection){
       
-      saveToFirebase()
+      saveToFirebase(mail)
       clearLocalStorage()
       var gama = ($scope.decision.bordado) ? 'Europa':'Lisa'
       var data = {
