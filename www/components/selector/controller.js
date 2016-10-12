@@ -3,7 +3,7 @@ angular.module('veils.controllers')
 SelectorController.$inject = ["$rootScope", "$scope", "$state", "$ionicModal", "$ionicLoading", "$localStorage", "$ionicPlatform","$ionicSlideBoxDelegate"];
 
 function SelectorController($rootScope, $scope, $state, $ionicModal, $ionicLoading, $localStorage, $ionicPlatform,$ionicSlideBoxDelegate) {
-  
+  $ionicLoading.hide()
   $scope.selection = {};
   $scope.currentIndex = 0;
   $scope.decision = {

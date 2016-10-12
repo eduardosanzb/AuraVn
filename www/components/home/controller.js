@@ -1,11 +1,32 @@
 angular.module('veils.controllers')
 .controller('HomeController',HomeController);
-HomeController.$inject = ["$rootScope", "$scope", "$state", "$ionicModal", "$ionicLoading", "$localStorage", "$ionicPlatform","$firebaseObject","$firebaseArray","$firebaseAuth","$ionicViewSwitcher","$ionicPopup"];
+HomeController.$inject = ["$rootScope", "$scope", "$state", "$ionicModal", "$ionicLoading", "$localStorage", "$ionicPlatform","$firebaseObject","$firebaseArray","$firebaseAuth","$ionicViewSwitcher","$ionicPopup", "$cordovaNetwork"];
 
-function HomeController($rootScope, $scope, $state, $ionicModal, $ionicLoading, $localStorage, $ionicPlatform, $firebaseObject, $firebaseArray, $firebaseAuth, $ionicViewSwitcher, $ionicPopup) {
-  $scope.goToSelector = function(){
-    
-  }
+function HomeController($rootScope, $scope, $state, $ionicModal, $ionicLoading, $localStorage, $ionicPlatform, $firebaseObject, $firebaseArray, $firebaseAuth, $ionicViewSwitcher, $ionicPopup, $cordovaNetwork) {
+  document.addEventListener("deviceready", function () {
+
+    var type = $cordovaNetwork.getNetwork()
+
+    var isOnline = $cordovaNetwork.isOnline()
+
+    var isOffline = $cordovaNetwork.isOffline()
+
+
+    // listen for Online event
+    $rootScope.$on('$cordovaNetwork:online', function(event, networkState){
+      var onlineState = networkState;
+      console.log('We are connected')
+      $rootScope.connection = true
+    })
+
+    // listen for Offline event
+    $rootScope.$on('$cordovaNetwork:offline', function(event, networkState){
+      console.log('We are NOT connected')
+      var offlineState = networkState;
+      $rootScope.connection = false
+    })
+    console.log($rootScope)
+  }, false);
 
   $scope.findYourVeil = function(){
     if($rootScope.connection){
@@ -32,6 +53,7 @@ function HomeController($rootScope, $scope, $state, $ionicModal, $ionicLoading, 
           };
         });  
     } else {
+      $ionicLoading.show()
       $state.go("selector");
     }
     

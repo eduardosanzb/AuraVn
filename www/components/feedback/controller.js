@@ -1,11 +1,10 @@
 angular.module('veils.controllers')
 .controller('FeedbackController',FeedbackController);
-FeedbackController.$inject = ["$rootScope", "$scope", "$state", "$ionicModal", "$ionicLoading", "$localStorage", "$ionicPlatform", '$localStorage', '$firebaseArray', '$http', '$ionicPopup', '$timeout'];
+FeedbackController.$inject = ["$rootScope", "$scope", "$state", "$ionicModal", "$ionicLoading", "$localStorage", "$ionicPlatform", '$localStorage', '$firebaseArray', '$http', '$ionicPopup', 'ServerUrl'];
 
-function FeedbackController($rootScope, $scope, $state, $ionicModal, $ionicLoading, $localStorage, $ionicPlatform, $localStorage, $firebaseArray, $http, $ionicPopup, $timeout) {
+function FeedbackController($rootScope, $scope, $state, $ionicModal, $ionicLoading, $localStorage, $ionicPlatform, $localStorage, $firebaseArray, $http, $ionicPopup, ServerUrl) {
   $scope.decision = $localStorage.getObject('theDecision')
   $scope.selection = $localStorage.getObject('theSelection')
-
 
   function saveToFirebase(mail){
     console.log(mail)
@@ -25,8 +24,8 @@ function FeedbackController($rootScope, $scope, $state, $ionicModal, $ionicLoadi
       });
   }
   function clearLocalStorage(){
-    $localStorage.setObject('theDecision', {})
-    $localStorage.setObject('theSelection', {})
+    $localStorage.setObject('theDecision', undefined)
+    $localStorage.setObject('theSelection', undefined)
   }
   function sendToEmail(mail){
     $ionicLoading.show()
@@ -37,40 +36,39 @@ function FeedbackController($rootScope, $scope, $state, $ionicModal, $ionicLoadi
      *  4. Send the data to the email server
      *  5. Clear localstorage and go to home
      */
-     if(true){
-     //if($rootScope.connection){
-      
-      saveToFirebase(mail)
-      clearLocalStorage()
-      var gama = ($scope.decision.bordado) ? 'Europa':'Lisa'
-      var data = {
-        mail:mail,
-        content: {
-          largos: $scope.decision.largo,
-          capas: $scope.decision.capas,
-          peinetas: $scope.decision.peinetas,
-          gama: gama
+     //if(true){
+     if($rootScope.connection){
+        saveToFirebase(mail)
+        clearLocalStorage()
+        var gama = ($scope.decision.bordado) ? 'Europa':'Lisa'
+        var data = {
+          mail:mail,
+          content: {
+            largos: $scope.decision.largo,
+            capas: $scope.decision.capas,
+            peinetas: $scope.decision.peinetas,
+            gama: gama
+          }
         }
-      }
-      $http.post('http://localhost:5000/sayHello',angular.toJson(data)).then(function(response){
-        console.log(response)
-      }, function(error){
-        console.log(error)
-      })
-      $state.go('home')
+        $http.post(ServerUrl + '/sayHello',angular.toJson(data)).then(function(response){
+          console.log(response)
+        }, function(error){
+          console.log(error)
+        })
+        $state.go('home')
       
      } else {
       var queue = $localStorage.getObject('queue')
-      if(queue === 'null'){
-        queue = []
-      }
+      if(queue == null){
+          queue = []
+        }
       var object = {
         decision : $scope.decision,
-        selection : $scope.selection
+        selection : $scope.selection,
+        mail : mail
       }
       queue.push(object)
       $localStorage.setObject('queue', queue)
-
      }
      $ionicLoading.hide()
      clearLocalStorage()
