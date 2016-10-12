@@ -9819,19 +9819,20 @@ a.button {
 * {
   font-family: 'Open Sans', sans-serif; }
 
-.center {
-  margin-right: auto;
-  margin-left: auto;
-  display: block; }
+.center h1 h2 {
+  margin-right: auto !important;
+  margin-left: auto !important;
+  display: block !important; }
 
 .initial-image {
   margin-right: auto;
   margin-left: auto;
-  display: block; }
+  display: block;
+  max-width: 50% !important; }
 
 .initial-button {
-  height: 90px;
-  width: 220px;
+  height: 70px;
+  width: 280px;
   text-align: center;
   color: black;
   font-style: bold;
@@ -9842,6 +9843,10 @@ a.button {
   margin-right: auto;
   margin-left: auto;
   display: block; }
+
+.home {
+  -webkit-flex-wrap: wrap;
+  flex-wrap: wrap; }
 
 /*SELECTOR SECTION*/
 .big-container {
@@ -9858,3 +9863,6 @@ a.button {
 
 .img-container h4 {
   text-align: center; }
+
+.swiper-pagination {
+  display: none !important; }

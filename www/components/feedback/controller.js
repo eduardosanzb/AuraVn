@@ -1,7 +1,130 @@
 angular.module('veils.controllers')
 .controller('FeedbackController',FeedbackController);
-FeedbackController.$inject = ["$rootScope", "$scope", "$state", "$ionicModal", "$ionicLoading", "$localStorage", "$ionicPlatform"];
+FeedbackController.$inject = ["$rootScope", "$scope", "$state", "$ionicModal", "$ionicLoading", "$localStorage", "$ionicPlatform", '$localStorage', '$firebaseArray', '$http', '$ionicPopup', '$timeout'];
 
-function FeedbackController($rootScope, $scope, $state, $ionicModal, $ionicLoading, $localStorage, $ionicPlatform) {
+function FeedbackController($rootScope, $scope, $state, $ionicModal, $ionicLoading, $localStorage, $ionicPlatform, $localStorage, $firebaseArray, $http, $ionicPopup, $timeout) {
+  $scope.decision = $localStorage.getObject('theDecision')
+  $scope.selection = $localStorage.getObject('theSelection')
 
+
+  function saveToFirebase(){
+    var ref = firebase.database().ref()
+      var selections = $firebaseArray(ref.child('selections'))
+      var decisions = $firebaseArray(ref.child('decisions'))
+      console.log()
+      selections.$add( $scope.selection).then(function(ref){
+        var id = ref.key;
+        console.log("added record with id " + id);
+        selections.$indexFor(id); // returns location in the array
+      });
+      decisions.$add( $scope.decision).then(function(ref){
+        var id = ref.key;
+        console.log("added record with id " + id);
+        decisions.$indexFor(id); // returns location in the array
+      });
+  }
+  function clearLocalStorage(){
+    $localStorage.setObject('theDecision', {})
+    $localStorage.setObject('theSelection', {})
+  }
+  function sendToEmail(mail){
+    $ionicLoading.show()
+     /* STRATEGY:
+     *  1. Create a Firebase object
+     *  2. Get the db and the child
+     *  3. Push the new object
+     *  4. Send the data to the email server
+     *  5. Clear localstorage and go to home
+     */
+     if(true){
+     //if($rootScope.connection){
+      
+      saveToFirebase()
+      clearLocalStorage()
+      var gama = ($scope.decision.bordado) ? 'Europa':'Lisa'
+      var data = {
+        mail:mail,
+        content: {
+          largos: $scope.decision.largo,
+          capas: $scope.decision.capas,
+          peinetas: $scope.decision.peinetas,
+          gama: gama
+        }
+      }
+      $http.post('http://localhost:5000/sayHello',angular.toJson(data)).then(function(response){
+        console.log(response)
+      }, function(error){
+        console.log(error)
+      })
+      $state.go('home')
+      
+     } else {
+      var queue = $localStorage.getObject('queue')
+      if(queue === 'null'){
+        queue = []
+      }
+      var object = {
+        decision : $scope.decision,
+        selection : $scope.selection
+      }
+      queue.push(object)
+      $localStorage.setObject('queue', queue)
+
+     }
+     $ionicLoading.hide()
+     clearLocalStorage()
+     $state.go('home');
+  }
+  $scope.openModal = function() {
+      $scope.data = {};
+
+      // An elaborate, custom popup
+      var myPopup = $ionicPopup.show({
+        template: '<input type="email" ng-model="data.email">',
+        title: 'Escribe tu Correo Electrónico',
+        subTitle: 'No te preocupes, no te vamos a molestar!',
+        scope: $scope,
+        buttons: [
+          { text: 'Cancel' },
+          {
+            text: '<b>Enviar</b>',
+            type: 'button-positive',
+            onTap: function(e) {
+              if (!$scope.data.email) {
+                //don't allow the user to close unless he enters wifi password
+                e.preventDefault();
+              } else {
+                return $scope.data.email;
+              }
+            }
+          }
+        ]
+      });
+
+      myPopup.then(function(res) {
+
+        console.log('Tapped!', res);
+        if(res){
+          sendToEmail(res)  
+        }
+        
+
+      });
+
+     
+  }
+  
+  $scope.justSave = function(){
+    $ionicLoading.show()
+    /* STRATEGY:
+     *  1. Create a Firebase object
+     *  2. Get the db and the child
+     *  3. Push the new object
+     *  4. Clear localstorage and go to home
+     */
+     saveToFirebase()
+     clearLocalStorage()
+     $state.go('home')
+     $ionicLoading.hide()
+  }
 }
