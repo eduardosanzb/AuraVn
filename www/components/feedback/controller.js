@@ -121,9 +121,25 @@ function FeedbackController($rootScope, $scope, $state, $ionicModal, $ionicLoadi
      *  3. Push the new object
      *  4. Clear localstorage and go to home
      */
-     saveToFirebase()
-     clearLocalStorage()
-     $state.go('home')
-     $ionicLoading.hide()
+     if($rootScope.connection){
+      saveToFirebase()
+       clearLocalStorage()
+       $ionicLoading.hide()
+     } else {
+        var queue = $localStorage.getObject('queue')
+        if(queue == null){
+            queue = []
+          }
+        var object = {
+            decision : $scope.decision,
+            selection : $scope.selection
+          }
+        queue.push(object)
+        $localStorage.setObject('queue', queue)
+        clearLocalStorage()
+        $ionicLoading.hide()
+     }
+     
+     $state.go('home');
   }
 }

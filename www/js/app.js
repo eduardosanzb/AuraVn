@@ -30,12 +30,13 @@ angular.module('veils', ['ionic','veils.controllers','veils.services','veils.fil
             console.log('item saved with id ' + item.key)
           })
           if(item.mail != 'anonimo'){
-            synService.mail(item).then(function(response){
+            syncService.mail(item).then(function(response){
               console.log('mail sent')
               console.log(response)
             })
           }
         })
+        $localStorage.setObject('queue', null)
       }
     } else {
       console.log('Not connected')
