@@ -7,8 +7,9 @@ app.use(express.static('public'));
 //Serves all the request which includes /images in the url from Images folder
 app.use('/images', express.static(__dirname + '/images'));
 
-app.listen(5000,function(){
-  console.log("Express Started on Port 5000");
+app.set('port', process.env.PORT || 3000)
+app.listen(app.get('port'),function(){
+  console.log("Express Started on Port 3000");
 });
 app.use(function(req, res, next) {
   res.header("Access-Control-Allow-Origin", "*");

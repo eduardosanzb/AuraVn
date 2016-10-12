@@ -4,7 +4,7 @@
 // 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
 // the 2nd parameter is an array of 'requires'
 angular.module('veils', ['ionic','veils.controllers','veils.services','veils.filters','firebase', 'ngCordova'])
-.constant('ServerUrl', 'http://192.168.15.2:5000')
+.constant('ServerUrl', 'https://arcane-dusk-34127.herokuapp.com:5000')
 //.constant('ServerUrl', 'http://localhost:5000')
 .run(function($ionicPlatform, $rootScope, firebase, $cordovaNetwork, $localStorage, syncService) {
   $ionicPlatform.ready(function() {
