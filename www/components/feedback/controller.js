@@ -37,9 +37,9 @@ function FeedbackController($rootScope, $scope, $state, $ionicModal, $ionicLoadi
      *  5. Clear localstorage and go to home
      */
      //if(true){
-     if($rootScope.connection){
-        saveToFirebase(mail)
-        clearLocalStorage()
+     if(true){
+        //saveToFirebase(mail)
+        //clearLocalStorage()
         var gama = ($scope.decision.bordado) ? 'Europa':'Lisa'
         var data = {
           mail:mail,

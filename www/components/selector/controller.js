@@ -131,13 +131,41 @@ function SelectorController($rootScope, $scope, $state, $ionicModal, $ionicLoadi
      *      of the user.
      */
     $scope.decision.largo.sort()
-    $scope.decision.largo = $scope.decision.largo.reduce(function(total, curr, indx, array){
-      var nextNumber = array[indx+1]
-      if(curr === nextNumber){
-        total.push(nextNumber)
+    var repeated = function(array){
+        var i = 0
+        var length = array.length
+        var flag = false
+        while (i !== length) {
+          var current = array[i]
+          for(var j = i+1; j < array.length-1; j++){
+            if(current === array[j]){
+              flag = true
+              break;
+            }
+          }
+          i++
+        }
+        return flag
       }
-      return total
-    }, [])
+
+    if(repeated($scope.decision.largo)){
+      $scope.decision.largo = $scope.decision.largo.reduce(function(total, curr, indx, array){
+          var nextNumber = array[indx+1]
+          if(curr === nextNumber){
+            total.push(nextNumber)
+          } 
+          return total
+        }, [])
+    } else {
+      $scope.decision.largo = $scope.decision.largo
+    }
+    // $scope.decision.largo = $scope.decision.largo.reduce(function(total, curr, indx, array){
+    //   var nextNumber = array[indx+1]
+    //   if(curr === nextNumber){
+    //     total.push(nextNumber)
+    //   }
+    //   return total
+    // }, [])
     $scope.decision.capas = ($scope.decision.capas.some(function(x){return x === 2}))
                         ? 2 : 1
     $scope.decision.tooLarge = ($scope.selection.heigth > 185) ? true : false
