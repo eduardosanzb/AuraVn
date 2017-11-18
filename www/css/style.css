@@ -1,0 +1,17 @@
+/* Empty. Add your own CSS if you like */
+.responsive_image {
+	width: 100% !important;
+	height: auto !important;
+}
+img {
+	max-width: 100% !important;
+    max-height: 100% !important;
+}
+
+.card {
+	height: 100% !important;
+}
+
+.nav-bar-container {
+	display: none !important;
+}
