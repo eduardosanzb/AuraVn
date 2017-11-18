@@ -1,0 +1,95 @@
+<ion-view view-title="Diseñando tu Velo">
+    <ion-nav-buttons side="left">
+      <button class="button icon ion-chevron-left" ng-click="goBack()" ng-show="flagDafuq"></button>
+    </ion-nav-buttons>        
+    <!-- <ion-nav-buttons side="right">
+      <button class="button button-assertive" ng-click="nextSlide()">
+        RightButton
+      </button>
+    </ion-nav-buttons>   -->
+	<ion-content scroll="false" class="has-header padding">
+	  <ion-slides  show-pager="false" options="options" slider="data.slider">
+	  
+	    <!--  Slide for the selection.dress    -->
+	    <ion-slide-page>
+	      	<div class="big-container">
+	          <h1>Tu Vestido</h1>
+	          <h2>Selecciona tu tipo de Vestido</h2>
+	          <div class="row responsive-sm img-container">
+	            <div class="col" ng-click="dressSelected('a')"><img src="img/dress-styles/CORTEA.png"><footer><h4>Corte A</h4></footer></div>
+				<div class="col" ng-click="dressSelected('sirena')"><img src="img/dress-styles/SIRENA.png"><h4>Sirena</h4></div>
+				<div class="col" ng-click="dressSelected('recto')"><img src="img/dress-styles/RECTO.png"><h4>Recto</h4></div>
+	            <div class="col" ng-click="dressSelected('griego')"><img src="img/dress-styles/GRIEGO.png"><h4>Griego</h4></div>
+	            <div class="col" ng-click="dressSelected('princesa')"><img src="img/dress-styles/PRINCESA.png"><h4>Princesa</h4></div>
+	          </div>
+         	</div>
+        </ion-slide-page>
+		<!--  Slide for the selection.embroidery    -->
+        <ion-slide-page>
+	      	<div class="big-container">
+	          <h1>Tu Vestido</h1>
+	          <h2>Selecciona tu acabado del vestido</h2>
+	          <div class="row responsive-sm img-container">
+	            <div class="col" ng-click="dressStyle('cargado')"><img src="img/dress-finnish/STYLE_A.jpg"><h4><ul><li>Encajes</li><li>Bordados</li><li>Pedreria</li></ul></h4></div>
+				      <div class="col" ng-click="dressStyle('liso')"><img src="img/dress-finnish/STYLE_B.jpg"><h4>Liso</h4></div>
+	          </div>
+         	</div>
+        </ion-slide-page>
+        
+        <!--  Slide for the selection.face    -->
+        <ion-slide-page>
+	      	<div class="big-container">
+	          <h1>Tu Rostro</h1>
+	          <h2>Selecciona tu tipo de rostro</h2>
+	          <div class="row responsive-sm img-container">
+	            <div class="col" ng-click="faceSelected('ovalado')"><img src="img/face-shape/oval.jpg"><footer><h4>Ovalado</h4></footer></div>
+	            <div class="col" ng-click="faceSelected('cuadrado')"><img src="img/face-shape/rectangle.jpg"><footer><h4>Cuadrado</h4></footer></div>
+	            <div class="col" ng-click="faceSelected('corazon')"><img src="img/face-shape/heart.jpg"><footer><h4>Corazón</h4></footer></div>
+	            <div class="col" ng-click="faceSelected('redondo')"><img src="img/face-shape/round.jpg"><footer><h4>Redondo</h4></footer></div>
+	          </div>
+         	</div>
+        </ion-slide-page>
+        
+        <!--  Slide for the selection.hair    -->
+        <ion-slide-page>
+	      	<div class="big-container">
+	          <h1>Tu Peinado</h1>
+	          <h2>Selecciona que peinado usaras en TU gran día</h2>
+	          <div class="row responsive-sm img-container">
+	            <div class="col" ng-click="hairSelected('suelto')"><img src="img/hair-style/SUELTO.png"><footer><h4>Suelto</h4></footer></div>
+	            <div class="col" ng-click="hairSelected('suelto')"><img src="img/hair-style/MEDIO_RECOGIDO.png"><footer><h4>Medio Recogido</h4></footer></div>
+	            <div class="col" ng-click="hairSelected('moño')"><img src="img/hair-style/MOÑO_ALTO.png"><footer><h4>Moño Alto</h4></footer></div>
+	            <div class="col" ng-click="hairSelected('moño')"><img src="img/hair-style/MOÑO_BAJO.png"><footer><h4>Moño Bajo</h4></footer></div>
+	          </div>
+         	</div>
+        </ion-slide-page>
+		
+		<!--  Slide for the selection.height    -->
+        <ion-slide-page>
+	      	<div class="big-container">
+	          <h1>Tu Altura</h1>
+	          <h2>Ingresa tu altura en centimetros</h2>
+            <!-- <div class="item item-input item-select">
+              <div class="input-label">
+                Lightsaber
+              </div>
+              <select ng-model="selection.heigth" ng-options="value as value for value in heights">
+                <option>Blue</option>
+                <option selected>Green</option>
+                <option>Red</option>
+              </select>
+            </div> -->
+	          <div class="list list-inset col col-50  col-offset-50">
+
+              <label class="item item-input">
+                <input type="number" placeholder="Tu altura" ng-model="selection.heigth">
+              </label>
+            </div>
+            <button class="button button-assertive" ng-click="heigthSelected()" ng-disabled="!selection.heigth">
+              Listo
+            </button>
+        </ion-slide-page>
+        
+	  </ion-slides>
+	</ion-content>
+</ion-view>

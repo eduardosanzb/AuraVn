@@ -1,0 +1,40 @@
+<ion-view view-title="Resultados">
+  <ion-content scroll="false" class="has-header padding">
+    <div class="center">
+      <h1>Gracias</h1>
+      <h2>AURAVN le recomienda</h2>  
+    </div>
+    <div class="row">
+      <div class="col col-33">
+        <h2>Tus largos</h2>
+        <ul ng-repeat="largo in decision.largo">
+          <li><h3>{{largo | largo}}</h3></li>
+      </ul>
+      </div>
+      <div class="col col-33 col-offset-20">
+        <h2>Número de Peinetas</h2>
+        <h3>{{decision.peinetas}}</h3>
+      </div>
+    </div>
+    <div class="row">
+    <div class="col col-33">
+        <h2>Número de Capas</h2>
+        <h3>{{decision.capas}}</h3>
+      </div>
+      <div class="col col-33 col-offset-20">
+        <h2>De la Gama</h2>
+        <h3>{{decision.bordado | gama}}</h3>
+      </div>
+
+    </div>
+    <div class="row padding-top button-bar">
+      <button ng-click="openModal()" class="button icon-left ion-paper-airplane button-positive">Enviar a mi Correo</button>
+      <button ng-click="justSave()" class="button icon-left ion-checkmark-circled button-assertive">Terminar</button>
+    </div>
+    <div ng-hide="true">
+      Decision: {{decision}}
+      Selection : {{selection}}  
+    </div>
+    
+  </ion-content>
+</ion-view>
