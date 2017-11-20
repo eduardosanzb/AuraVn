@@ -1,9 +1,2 @@
-# Specifies intentionally untracked files to ignore when using Git
-# http://git-scm.com/docs/gitignore
-
-.DS_Store
 node_modules/
-platforms/
-plugins/
-old_working/node_modules
-Server_mail/node_modules
+/.next
