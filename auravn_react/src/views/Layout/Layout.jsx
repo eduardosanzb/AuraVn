@@ -1,6 +1,7 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 
+
 import Home from '../Home';
 import Dress from '../Dress';
 import Face from '../Face';
@@ -10,7 +11,6 @@ import Results from '../Results';
 const { DressType, DressStyle } = Dress;
 
 const Layout = props => {
-  console.log(props);
   return (
   <div>
     <Route exact path="/" component={Home} />
