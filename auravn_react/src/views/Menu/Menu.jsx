@@ -1,25 +1,49 @@
-import React, { Children } from 'react';
-import { Link, BrowserRouter as Router } from 'react-router-dom';
+import React from 'react';
 
 import { withStyles } from 'material-ui/styles';
 import classNames from 'classnames';
 
 import AppBar from 'material-ui/AppBar';
 import Toolbar from 'material-ui/Toolbar';
-import Button from 'material-ui/Button';
-import { MenuItem } from 'material-ui/Menu';
 import Typography from 'material-ui/Typography';
-import TextField from 'material-ui/TextField';
-import Divider from 'material-ui/Divider';
 import IconButton from 'material-ui/IconButton';
 import MenuIcon from 'material-ui-icons/Menu';
 import Drawer from 'material-ui/Drawer/Drawer';
 import ChevronLeftIcon from 'material-ui-icons/ChevronLeft';
+import Divider from 'material-ui/Divider';
 import ChevronRightIcon from 'material-ui-icons/ChevronRight';
 import List, { ListItem, ListItemIcon, ListItemText } from 'material-ui/List';
-import InboxIcon from 'material-ui-icons/MoveToInbox';
+import LinkAndClose from './../../components/LinkAndClose';
 
+import grey from 'material-ui/colors/grey';
 const drawerWidth = 240;
+
+const ROUTE_CONFIGURATION = [
+  {
+    to: '/',
+    text: 'Home',
+  },
+  {
+    to: '/dress-type',
+    text: 'Dress 1'
+  },
+  {
+    to: '/dress-finish',
+    text: 'Dress 2'
+  },
+  {
+    to: '/face',
+    text: 'Type of Face'
+  },
+  {
+    to: '/hair',
+    text: 'Hair Style'
+  },
+  {
+    to: '/results',
+    text: 'Results'
+  }
+];
 
 const styles = theme => ({
   root: {
@@ -37,6 +61,7 @@ const styles = theme => ({
   },
   appBar: {
     position: 'absolute',
+    backgroundColor: grey[900],
     transition: theme.transitions.create(['margin', 'width'], {
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.leavingScreen
@@ -77,7 +102,6 @@ const styles = theme => ({
   content: {
     width: '100%',
     flexGrow: 1,
-    backgroundColor: theme.palette.background.default,
     padding: theme.spacing.unit * 3,
     transition: theme.transitions.create('margin', {
       easing: theme.transitions.easing.sharp,
@@ -92,78 +116,29 @@ const styles = theme => ({
       }
     }
   },
-  'content-left': {
-    marginLeft: -drawerWidth
-  },
-  'content-right': {
-    marginRight: -drawerWidth
-  },
-  contentShift: {
-    transition: theme.transitions.create('margin', {
-      easing: theme.transitions.easing.easeOut,
-      duration: theme.transitions.duration.enteringScreen
-    })
-  },
-  'contentShift-left': {
-    marginLeft: 0
-  },
-  'contentShift-right': {
-    marginRight: 0
-  }
+  
+ 
 });
 
-const LinkAndClose = ({ drawerOpened, to, text, className, closeDrawer }) => (
-  <ListItem button onClick={() => (drawerOpened ? closeDrawer() : null)}>
-    <Link to={to}>
-      <ListItemIcon>
-        <InboxIcon />
-      </ListItemIcon>
-      <ListItemText primary="Inbox" />
-    </Link>
-    <Divider />
-  </ListItem>
-);
+
 class Menu extends React.PureComponent {
   state = {
-    open: false,
-    anchor: 'left'
+    open: false
   };
+
+  getHeaderNameFromLocation = ({ pathname }) =>
+    ROUTE_CONFIGURATION.find(({ to }) => pathname === to).text;
 
   handleDrawerOpen = () => {
     this.setState({ open: true });
   };
 
-  handleDrawerClose = () => {
+  handleDrawerClose = (currentRouteName = '') => {
     this.setState({ open: false });
   };
 
   menuRoutes = () =>
-    [
-      {
-        to: '/',
-        text: 'Home'
-      },
-      {
-        to: '/dress-type',
-        text: 'Dress 1'
-      },
-      {
-        to: '/dress-finish',
-        text: 'Dress 2'
-      },
-      {
-        to: '/face',
-        text: 'Type of Face'
-      },
-      {
-        to: '/hair',
-        text: 'Hair Style'
-      },
-      {
-        to: '/results',
-        text: 'Results'
-      }
-    ].map(itemProps => (
+    ROUTE_CONFIGURATION.map(itemProps => (
       <LinkAndClose
         key={`item${itemProps.to}`}
         {...itemProps}
@@ -173,39 +148,36 @@ class Menu extends React.PureComponent {
     ));
 
   render() {
-    const { classes, theme, content } = this.props;
-    const { anchor, open } = this.state;
+    const { classes, theme, location, content } = this.props;
+    const { open, currentRouteName } = this.state;
 
     return (
       <div className={classes.root}>
         <AppBar
           className={classNames(classes.appBar, {
             [classes.appBarShift]: open,
-            [classes[`appBarShift-${anchor}`]]: open
-          })}
-        >
+            [classes[`appBarShift-left`]]: open
+          })}>
           <Toolbar disableGutters={!open}>
             <IconButton
               color="contrast"
               aria-label="open drawer"
               onClick={this.handleDrawerOpen}
-              className={classNames(classes.menuButton, open && classes.hide)}
-            >
+              className={classNames(classes.menuButton, open && classes.hide)}>
               <MenuIcon />
             </IconButton>
             <Typography type="title" color="inherit" noWrap>
-              Persistent drawer
+              {this.getHeaderNameFromLocation(location)}
             </Typography>
           </Toolbar>
         </AppBar>
         <Drawer
-          type="persistent"
+          // type="persistent"
           classes={{
             paper: classes.drawerPaper
           }}
-          anchor={anchor}
-          open={open}
-        >
+          anchor={'left'}
+          open={open}>
           <div className={classes.drawerInner}>
             <div className={classes.drawerHeader}>
               <IconButton onClick={this.handleDrawerClose}>
@@ -218,15 +190,13 @@ class Menu extends React.PureComponent {
             </div>
             <Divider />
 
-            {this.menuRoutes()}
+            <List>{this.menuRoutes()}</List>
           </div>
         </Drawer>
-        <main
-          className={classNames(classes.content, classes[`content-${anchor}`], {
-            [classes.contentShift]: open,
-            [classes[`contentShift-${anchor}`]]: open
-          })}
-        />
+        <div
+          className={classNames(classes.content)}>
+          {this.props.children}
+        </div>
       </div>
     );
   }

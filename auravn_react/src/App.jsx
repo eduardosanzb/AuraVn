@@ -6,17 +6,28 @@ import Hidden from 'material-ui/Hidden';
 
 import Layout from './views/Layout/Layout';
 import Menu from './views/Menu/Menu';
-import { BrowserRouter as Router } from 'react-router-dom';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
 
+const MenuWithRouterProps = () => (
+  <Route
+    path="/"
+    render={props => (
+      <Menu {...props} content={Layout}>
+        {' '}
+        <Layout />
+      </Menu>
+    )}
+  />
+);
 class AppState extends React.PureComponent {
   render() {
     return (
       <Router>
         <div>
-          <Hidden mdUp>
-            <Menu content={Layout} />
+          <Hidden mdUp>{MenuWithRouterProps()}</Hidden>
+          <Hidden mdDown>
+            <Layout />
           </Hidden>
-          <Layout />
         </div>
       </Router>
     );

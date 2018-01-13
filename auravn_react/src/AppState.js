@@ -1,6 +1,6 @@
-import AppState from './App.state';
+import AppRender from './App';
 
-class App extends AppState {
+class App extends AppRender {
 	constructor(props) {
 		super(props);
 		this.state = {};
