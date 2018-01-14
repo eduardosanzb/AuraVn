@@ -12,8 +12,13 @@ import 'typeface-roboto';
 
 const theme = createMuiTheme({
   palette: {
-    primary: purple,
-    secondary: grey,
+    primary: {
+      light: purple[100],
+      main: purple[500],
+    },
+    secondary: {
+      main: grey[900]
+    },
   }
 });
 
