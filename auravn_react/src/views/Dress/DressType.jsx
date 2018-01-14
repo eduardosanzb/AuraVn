@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+
 function DressType({ ...props }) {
   return <div>DressType</div>;
 }

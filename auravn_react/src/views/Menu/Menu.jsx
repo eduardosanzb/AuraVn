@@ -13,15 +13,17 @@ import ChevronLeftIcon from 'material-ui-icons/ChevronLeft';
 import Divider from 'material-ui/Divider';
 import ChevronRightIcon from 'material-ui-icons/ChevronRight';
 import List, { ListItem, ListItemIcon, ListItemText } from 'material-ui/List';
-import LinkAndClose from './../../components/LinkAndClose';
-
 import grey from 'material-ui/colors/grey';
+
+import LinkAndClose from './../../components/LinkAndClose';
+import FooterWithSteps from './../Layout/Footer';
+
 const drawerWidth = 240;
 
 const ROUTE_CONFIGURATION = [
   {
     to: '/',
-    text: 'Home',
+    text: 'Home'
   },
   {
     to: '/dress-type',
@@ -48,7 +50,7 @@ const ROUTE_CONFIGURATION = [
 const styles = theme => ({
   root: {
     width: '100%',
-    height: 430,
+    height: '100%',
     marginTop: theme.spacing.unit * 3,
     zIndex: 1,
     overflow: 'hidden'
@@ -96,30 +98,26 @@ const styles = theme => ({
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'flex-end',
-    padding: '0 8px',
+    padding: '0 20px',
     ...theme.mixins.toolbar
   },
   content: {
     width: '100%',
     flexGrow: 1,
-    padding: theme.spacing.unit * 3,
     transition: theme.transitions.create('margin', {
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.leavingScreen
     }),
     height: 'calc(100% - 56px)',
-    marginTop: 56,
-    [theme.breakpoints.up('md')]: {
-      content: {
-        height: 'calc(100% - 64px)',
-        marginTop: 64
-      }
-    }
+    marginTop: 56
   },
-  
- 
+  footer: {
+    width: '100%',
+    flexGrow: 1,
+    position: 'absolute',
+    bottom: 0
+  }
 });
-
 
 class Menu extends React.PureComponent {
   state = {
@@ -172,7 +170,6 @@ class Menu extends React.PureComponent {
           </Toolbar>
         </AppBar>
         <Drawer
-          // type="persistent"
           classes={{
             paper: classes.drawerPaper
           }}
@@ -181,11 +178,7 @@ class Menu extends React.PureComponent {
           <div className={classes.drawerInner}>
             <div className={classes.drawerHeader}>
               <IconButton onClick={this.handleDrawerClose}>
-                {theme.direction === 'rtl' ? (
-                  <ChevronRightIcon />
-                ) : (
-                  <ChevronLeftIcon />
-                )}
+                <ChevronLeftIcon />
               </IconButton>
             </div>
             <Divider />
@@ -193,9 +186,9 @@ class Menu extends React.PureComponent {
             <List>{this.menuRoutes()}</List>
           </div>
         </Drawer>
-        <div
-          className={classNames(classes.content)}>
-          {this.props.children}
+        <div className={classNames(classes.content)}>{this.props.children}</div>
+        <div className={classNames(classes.footer)}>
+          <FooterWithSteps location={location} />
         </div>
       </div>
     );

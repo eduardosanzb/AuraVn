@@ -1,6 +1,7 @@
 import React from 'react';
 import compose from 'recompose/compose';
 import { withStyles } from 'material-ui/styles';
+import Reboot from 'material-ui/Reboot';
 
 import Hidden from 'material-ui/Hidden';
 
@@ -11,10 +12,9 @@ import { BrowserRouter as Router, Route } from 'react-router-dom';
 const MenuWithRouterProps = () => (
   <Route
     path="/"
-    render={props => (
-      <Menu {...props} content={Layout}>
-        {' '}
-        <Layout />
+    render={({ location }) => (
+      <Menu content={Layout} location={location}>
+        <Layout location={location} />
       </Menu>
     )}
   />
@@ -22,14 +22,17 @@ const MenuWithRouterProps = () => (
 class AppState extends React.PureComponent {
   render() {
     return (
+      <div>
+      <Reboot />
       <Router>
         <div>
           <Hidden mdUp>{MenuWithRouterProps()}</Hidden>
           <Hidden mdDown>
-            <Layout />
+            <Route render={props => <Layout {...props} />} />
           </Hidden>
         </div>
       </Router>
+      </div>
     );
   }
 }
