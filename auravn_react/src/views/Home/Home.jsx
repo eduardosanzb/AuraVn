@@ -22,6 +22,12 @@ const styles = theme => ({
   },
   rightIcon: {
     marginLeft: theme.spacing.unit
+  },
+  image: {
+    display: 'block',
+    marginLeft: 'auto',
+    marginRight: 'auto',
+    maxWidth: '80%'
   }
 });
 
@@ -34,15 +40,18 @@ function Home(props) {
       alignContent="center"
       justify="center">
       <Grid item xs={12}>
-        <img src={IconPath} style={{ maxWidth: '80%' }} />
+        <img src={IconPath} className={classes.image} />
       </Grid>
       <Grid item>
-        <Link to="/dress-type">
-          <Button className={classes.button} raised color="primary">
-            Start
-            <Icon />
-          </Button>
-        </Link>
+        <Button
+          className={classes.button}
+          raised
+          color="primary"
+          component={Link}
+          to="/dress-type">
+          Start
+          <Icon />
+        </Button>
       </Grid>
     </Grid>
   );

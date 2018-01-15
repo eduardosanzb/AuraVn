@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 import { withStyles } from 'material-ui/styles';
 import MobileStepper from 'material-ui/MobileStepper';
 import Button from 'material-ui/Button';
@@ -8,30 +9,59 @@ import KeyboardArrowRight from 'material-ui-icons/KeyboardArrowRight';
 
 const styles = {
   root: {
-   width: '100%',
-		flexGrow: 1,
-  },
+    width: '100%',
+    flexGrow: 1
+  }
 };
 
+const locationMatchStep = {
+  '/': 0,
+  '/dress-type': 1,
+  '/dress-finish': 2,
+  '/face': 3,
+  '/hair': 4,
+  '/results': 5
+};
 class DotsMobileStepper extends React.Component {
-  state = {
-    activeStep: 0,
+  constructor(props) {
+    super(props);
+    this.state = {
+      activeStep: this.getStepFromPathname()
+    };
+  }
+
+  componentDidUpdate({ location: { pathname } }) {
+    const { location: { pathname: current } } = this.props;
+    if (pathname !== current) {
+      this.setState({
+        activeStep: this.getStepFromPathname()
+      });
+    }
+  }
+
+  getStepFromPathname = () => {
+    const { location: { pathname } } = this.props;
+    return locationMatchStep[pathname];
   };
 
-  handleNext = () => {
-    this.setState({
-      activeStep: this.state.activeStep + 1,
-    });
+  // TODO: Remove when global config file
+  getPreviousPathname = () => {
+    const invertedObject = Object.assign(
+      {},
+      ...Object.entries(locationMatchStep).map(([a, b]) => ({ [b]: a }))
+    );
+    const index = this.getStepFromPathname() - 1;
+    return index >= 0 ? invertedObject[index] : '/';
   };
 
   handleBack = () => {
     this.setState({
-      activeStep: this.state.activeStep - 1,
+      activeStep: this.state.activeStep - 1
     });
   };
 
   render() {
-    const { classes, theme } = this.props;
+    const { classes, theme, location: { pathname } } = this.props;
 
     return (
       <MobileStepper
@@ -40,15 +70,15 @@ class DotsMobileStepper extends React.Component {
         position="static"
         activeStep={this.state.activeStep}
         className={classes.root}
-        nextButton={
-          <Button dense onClick={this.handleNext} disabled={this.state.activeStep === 5}>
-            Next
-            {theme.direction === 'rtl' ? <KeyboardArrowLeft /> : <KeyboardArrowRight />}
-          </Button>
-        }
+        nextButton={<div style={{ minWidth: 64 }} />}
         backButton={
-          <Button dense onClick={this.handleBack} disabled={this.state.activeStep === 0}>
-            {theme.direction === 'rtl' ? <KeyboardArrowRight /> : <KeyboardArrowLeft />}
+          <Button
+            component={Link}
+            to={this.getPreviousPathname()}
+            dense
+            onClick={this.handleBack}
+            disabled={this.state.activeStep === 0}>
+            <KeyboardArrowLeft />
             Back
           </Button>
         }
@@ -59,7 +89,7 @@ class DotsMobileStepper extends React.Component {
 
 DotsMobileStepper.propTypes = {
   classes: PropTypes.object.isRequired,
-  theme: PropTypes.object.isRequired,
+  theme: PropTypes.object.isRequired
 };
 
 export default withStyles(styles, { withTheme: true })(DotsMobileStepper);

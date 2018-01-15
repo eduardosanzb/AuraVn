@@ -1,6 +1,6 @@
 import React from 'react';
-import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
-import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
+import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom';
+import { TransitionGroup, CSSTransition } from 'react-transition-group';
 
 import Home from '../Home';
 import Dress from '../Dress';
@@ -38,30 +38,31 @@ const routes = [
   }
 ];
 
-const PageWithTransition = Page => props => (
-  <div className="page">
-    <ReactCSSTransitionGroup
-      transitionAppear={true}
-      transitionAppearTimeout={600}
-      transitionEnterTimeout={600}
-      transitionLeaveTimeout={200}
-      transitionName={props.match.path === '/results' ? 'SlideIn' : 'SlideOut'}>
-      <Page {...props} />
-    </ReactCSSTransitionGroup>
-  </div>
-);
 const Layout = ({ location }) => {
   return (
-    <React.Fragment>
-      {routes.map(route => (
-        <Route
-          exact={route.exact}
-          path={route.path}
-          key={route.path}
-          component={PageWithTransition(route.component)}
-        />
-      ))}
-    </React.Fragment>
+    <div>
+      <TransitionGroup>
+        <CSSTransition
+          key={location.pathname.split('/')[1]}
+          classNames="fade"
+          mountOnEnter={true}
+          unmountOnExit={true}
+          exit={false}
+          timeout={300}>
+          <Switch location={location}>
+            {routes.map(route => (
+              <Route
+                location={location}
+                exact={route.exact}
+                path={route.path}
+                key={route.path}
+                component={route.component}
+              />
+            ))}
+          </Switch>
+        </CSSTransition>
+      </TransitionGroup>
+    </div>
   );
 };
 export default Layout;
