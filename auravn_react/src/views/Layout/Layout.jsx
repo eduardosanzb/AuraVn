@@ -48,7 +48,7 @@ const Layout = ({ location }) => {
           mountOnEnter={true}
           unmountOnExit={true}
           exit={false}
-          timeout={300}>
+          timeout={location.pathname === '/dress-type' ? 5000 : 200}>
           <Switch location={location}>
             {routes.map(route => (
               <Route

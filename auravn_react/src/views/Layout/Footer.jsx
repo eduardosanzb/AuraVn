@@ -26,7 +26,8 @@ class DotsMobileStepper extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      activeStep: this.getStepFromPathname()
+      activeStep: this.getStepFromPathname(),
+      debugMode: true
     };
   }
 
@@ -54,6 +55,21 @@ class DotsMobileStepper extends React.Component {
     return index >= 0 ? invertedObject[index] : '/';
   };
 
+  getNextPathname = () => {
+    const invertedObject = Object.assign(
+      {},
+      ...Object.entries(locationMatchStep).map(([a, b]) => ({ [b]: a }))
+    );
+    const index = this.getStepFromPathname() + 1;
+    return index <= 5 ? invertedObject[index] : '/';
+  };
+
+  handleNext = () => {
+    this.setState({
+      activeStep: this.state.activeStep + 1
+    });
+  };
+
   handleBack = () => {
     this.setState({
       activeStep: this.state.activeStep - 1
@@ -62,15 +78,30 @@ class DotsMobileStepper extends React.Component {
 
   render() {
     const { classes, theme, location: { pathname } } = this.props;
+    const { activeStep, debugMode } = this.state
 
     return (
       <MobileStepper
         type="dots"
         steps={6}
         position="static"
-        activeStep={this.state.activeStep}
+        activeStep={activeStep}
         className={classes.root}
-        nextButton={<div style={{ minWidth: 64 }} />}
+        nextButton={
+          debugMode ? (
+            <Button
+              component={Link}
+              to={this.getNextPathname()}
+              dense
+              onClick={this.handleNext}
+              disabled={this.state.activeStep === 5}>
+              <KeyboardArrowRight />
+              Next
+            </Button>
+          ) : (
+            <div style={{ minWidth: 64 }} />
+          )
+        }
         backButton={
           <Button
             component={Link}
