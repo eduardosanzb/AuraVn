@@ -40,7 +40,7 @@ const routes = [
 
 const Layout = ({ location }) => {
   return (
-    <div>
+    <div style={{ padding: 10 }}>
       <TransitionGroup>
         <CSSTransition
           key={location.pathname.split('/')[1]}
