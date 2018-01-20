@@ -62,7 +62,7 @@ const styles = theme => ({
     height: '100%'
   },
   appBar: {
-    position: 'absolute',
+    position: 'fixed',
     backgroundColor: grey[900],
     transition: theme.transitions.create(['margin', 'width'], {
       easing: theme.transitions.easing.sharp,
@@ -108,13 +108,14 @@ const styles = theme => ({
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.leavingScreen
     }),
-    height: 'calc(100% - 56px)',
-    marginTop: 56
+    height: 'calc(100% - 90px)',
+    marginTop: 40,
+    marginBottom: 50
   },
   footer: {
     width: '100%',
     flexGrow: 1,
-    position: 'absolute',
+    position: 'fixed',
     bottom: 0
   }
 });

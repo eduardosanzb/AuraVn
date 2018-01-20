@@ -14,31 +14,35 @@ const routes = [
   {
     exact: true,
     path: '/',
-    component: Home
+    Component: Home,
   },
   {
     path: '/dress-type',
-    component: DressType
+    Component: DressType,
+    storeValue: 'dressType',
   },
   {
     path: '/dress-finish',
-    component: DressStyle
+    Component: DressStyle,
+    storeValue: 'dressStyle',
   },
   {
     path: '/face',
-    component: Face
+    Component: Face,
+    storeValue: 'faceType',
   },
   {
     path: '/hair',
-    component: Hair
+    Component: Hair,
+    storeValue: 'hairType',
   },
   {
     path: '/results',
-    component: Results
-  }
+    Component: Results,
+  },
 ];
 
-const Layout = ({ location }) => {
+const Layout = ({ location, selections, updateSelections }) => {
   return (
     <div style={{ padding: 10 }}>
       <TransitionGroup>
@@ -50,13 +54,19 @@ const Layout = ({ location }) => {
           exit={false}
           timeout={location.pathname === '/dress-type' ? 5000 : 200}>
           <Switch location={location}>
-            {routes.map(route => (
+            {routes.map(({ Component, exact, path, storeValue }) => (
               <Route
                 location={location}
-                exact={route.exact}
-                path={route.path}
-                key={route.path}
-                component={route.component}
+                exact={exact}
+                path={path}
+                key={path}
+                render={() => (
+                  <Component
+                    currentSelection={selections[storeValue]}
+                    onSelection={updateSelections.bind(null, storeValue)}
+                    results={path === '/results' ? selections : null}
+                  />
+                )}
               />
             ))}
           </Switch>

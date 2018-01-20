@@ -6,7 +6,7 @@ import { MuiThemeProvider, createMuiTheme } from 'material-ui/styles';
 import purple from 'material-ui/colors/purple';
 import grey from 'material-ui/colors/grey';
 
-import App from './AppState';
+import App from './App';
 import registerServiceWorker from './registerServiceWorker';
 import 'typeface-roboto';
 
