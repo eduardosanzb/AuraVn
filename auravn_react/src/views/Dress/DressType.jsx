@@ -8,8 +8,10 @@ import Typography from 'material-ui/Typography';
 import InfoIcon from 'material-ui-icons/InfoOutline';
 import Card, { CardActions, CardContent } from 'material-ui/Card';
 import Button from 'material-ui/Button';
+import IconButton from 'material-ui/IconButton';
 import List, { ListItem, ListItemIcon, ListItemText } from 'material-ui/List';
 
+import AuraCard from '../../components/Card'
 const styles = theme => ({
   root: {
     flexGrow: 1,
@@ -45,25 +47,39 @@ const styles = theme => ({
   },
 });
 
-function mockCards(classes) {
-  return [...Array(4)].map(() => (
-    <ListItem>
-      <Card className={classes.card}>
-        <CardContent>
-          <Typography className={classes.title}>Word of the Day</Typography>
-          <Typography type="headline" component="h2">
-            sdfasdf
-          </Typography>
-          <Typography className={classes.pos}>adjective</Typography>
-          <Typography component="p">
-            well meaning and kindly.<br />
-            {'"a benevolent smile"'}
-          </Typography>
-        </CardContent>
-        <CardActions>
-          <Button dense>Learn More</Button>
-        </CardActions>
-      </Card>
+// TODO: Fetch this data from a GraphQL endpoint
+const dressTypes = [
+  {
+    description: 'Lorem ipson',
+    image: './dress_a_shape.png',
+    name: '1',
+  },
+  {
+    description: 'Lorem ipson',
+    image: './dress_greek.png',
+    name: '2',
+  },
+  {
+    description: 'Lorem ipson',
+    image: './dress_mermaid.png',
+    name: '3',
+  },
+  {
+    description: 'Lorem ipson',
+    image: './dress_princess.png',
+    name: '4',
+  },
+  {
+    description: 'Lorem ipson',
+    image: './dress_straight.png',
+    name: '5',
+  },
+];
+
+function mockCards(classes, onClick, currentSelection) {
+  return dressTypes.map((props, index) => (
+    <ListItem key={`${index}-${props.name}`}>
+      <AuraCard {...props} onClick={onClick} selected={currentSelection===props.name} />
     </ListItem>
   ));
 }
@@ -78,13 +94,15 @@ function DressType({ classes, theme, currentSelection, onSelection }) {
       </Grid>
       <Grid item xs={12}>
         <Paper className={classes.paperRoot}>
-          <Typography>Current Selection: Type A</Typography>
+          <Typography>Current Selection: {currentSelection}</Typography>
           <InfoIcon />
         </Paper>
       </Grid>
       <Grid item xs={12}>
         <div>
-          <List className={classes.list}>{mockCards(classes)}</List>
+          <List className={classes.list}>
+            {mockCards(classes, onSelection, currentSelection)}
+          </List>
         </div>
       </Grid>
     </Grid>

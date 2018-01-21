@@ -32,7 +32,7 @@ const styles = theme => ({
 });
 
 function Home(props) {
-  const { classes } = props;
+  const { classes, onSelection } = props;
   return (
     <Grid
       className={classes.root}

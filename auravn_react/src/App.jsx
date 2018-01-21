@@ -22,6 +22,7 @@ class App extends React.PureComponent {
 
   updateState = (key, newValue) => {
     // TODO: Add async update
+    console.log('key: ', key);
     this.setState(state => ({ ...this.state, [key]: newValue }));
   };
 
