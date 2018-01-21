@@ -1,6 +1,6 @@
-import React, { LiHTMLAttributes } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
-import List, { ListItem, ListItemIcon, ListItemText } from 'material-ui/List';
+import { ListItem, ListItemIcon, ListItemText } from 'material-ui/List';
 import Divider from 'material-ui/Divider';
 import HomeIcon from 'material-ui-icons/Home';
 import ResultsIcon from 'material-ui-icons/DoneAll';

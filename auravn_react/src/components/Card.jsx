@@ -2,14 +2,12 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import { withStyles } from 'material-ui/styles';
-import List, { ListItem, ListItemIcon, ListItemText } from 'material-ui/List';
-import Card, { CardActions, CardContent, CardMedia } from 'material-ui/Card';
+import Card, { CardActions, CardContent } from 'material-ui/Card';
 import IconButton from 'material-ui/IconButton';
 import InfoIcon from 'material-ui-icons/InfoOutline';
 import FlippedIcon from 'material-ui-icons/HighlightOff';
 import ButtonBase from 'material-ui/ButtonBase';
 import Typography from 'material-ui/Typography';
-import Zoom from 'material-ui/transitions/Zoom';
 
 const styles = theme => ({
   root: {

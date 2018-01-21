@@ -77,7 +77,7 @@ class DotsMobileStepper extends React.Component {
   };
 
   render() {
-    const { classes, theme, location: { pathname } } = this.props;
+    const { classes } = this.props;
     const { activeStep, debugMode } = this.state
 
     return (

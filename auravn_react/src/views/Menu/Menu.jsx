@@ -11,8 +11,7 @@ import MenuIcon from 'material-ui-icons/Menu';
 import Drawer from 'material-ui/Drawer/Drawer';
 import ChevronLeftIcon from 'material-ui-icons/ChevronLeft';
 import Divider from 'material-ui/Divider';
-import ChevronRightIcon from 'material-ui-icons/ChevronRight';
-import List, { ListItem, ListItemIcon, ListItemText } from 'material-ui/List';
+import List from 'material-ui/List';
 import grey from 'material-ui/colors/grey';
 
 import LinkAndClose from './../../components/LinkAndClose';
@@ -147,8 +146,8 @@ class Menu extends React.PureComponent {
     ));
 
   render() {
-    const { classes, theme, location, content } = this.props;
-    const { open, currentRouteName } = this.state;
+    const { classes, location } = this.props;
+    const { open } = this.state;
 
     return (
       <div className={classes.root}>

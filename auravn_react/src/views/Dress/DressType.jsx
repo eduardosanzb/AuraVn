@@ -6,10 +6,7 @@ import Grid from 'material-ui/Grid';
 import Paper from 'material-ui/Paper';
 import Typography from 'material-ui/Typography';
 import InfoIcon from 'material-ui-icons/InfoOutline';
-import Card, { CardActions, CardContent } from 'material-ui/Card';
-import Button from 'material-ui/Button';
-import IconButton from 'material-ui/IconButton';
-import List, { ListItem, ListItemIcon, ListItemText } from 'material-ui/List';
+import List, { ListItem } from 'material-ui/List';
 
 import AuraCard from '../../components/Card'
 const styles = theme => ({
