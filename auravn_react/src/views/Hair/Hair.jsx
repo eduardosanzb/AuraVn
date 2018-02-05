@@ -1,12 +1,20 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-function Hair({ ...props }) {
-  return <div>Hair</div>;
-}
+import GenericFunnelStep from '../../components/GenericFunnelStep';
 
-Hair.defaultProps = {};
+const Hair = props => (
+  <GenericFunnelStep
+    headerText={'Hair style of the big day!'}
+    cardsKey={'hairStyle'}
+    defaultCurrentSelectionLabel={'Select a hair style'}
+    {...props}
+  />
+);
 
-Hair.propTypes = {};
+Hair.propTypes = {
+  currentSelection: PropTypes.string.isRequired,
+  onSelection: PropTypes.func.isRequired
+};
 
 export default Hair;

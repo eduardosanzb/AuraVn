@@ -66,6 +66,7 @@ class AuraCard extends React.PureComponent {
             {flipped === false && (
               <div>
                 <img
+                  alt={name}
                   className={classes.media}
                   title={`image-for-${name}`}
                   src={image}

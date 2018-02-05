@@ -40,7 +40,7 @@ function Home(props) {
       alignContent="center"
       justify="center">
       <Grid item xs={12}>
-        <img src={IconPath} className={classes.image} />
+        <img src={IconPath} className={classes.image} alt={'logo'}/>
       </Grid>
       <Grid item>
         <Button
@@ -57,8 +57,8 @@ function Home(props) {
   );
 }
 
-Home.defaultProps = {};
-
-Home.propTypes = {};
+Home.propTypes = {
+  classes: PropTypes.object.isRequired,
+};
 
 export default withStyles(styles, withWidth())(Home);

@@ -14,37 +14,12 @@ import Divider from 'material-ui/Divider';
 import List from 'material-ui/List';
 import grey from 'material-ui/colors/grey';
 
+import config from '../../config';
 import LinkAndClose from './../../components/LinkAndClose';
 import FooterWithSteps from './../Layout/Footer';
 
 const drawerWidth = 240;
 
-const ROUTE_CONFIGURATION = [
-  {
-    to: '/',
-    text: 'Home'
-  },
-  {
-    to: '/dress-type',
-    text: 'Dress 1'
-  },
-  {
-    to: '/dress-finish',
-    text: 'Dress 2'
-  },
-  {
-    to: '/face',
-    text: 'Type of Face'
-  },
-  {
-    to: '/hair',
-    text: 'Hair Style'
-  },
-  {
-    to: '/results',
-    text: 'Results'
-  }
-];
 
 const styles = theme => ({
   root: {
@@ -124,19 +99,21 @@ class Menu extends React.PureComponent {
     open: false
   };
 
-  getHeaderNameFromLocation = ({ pathname }) =>
-    ROUTE_CONFIGURATION.find(({ to }) => pathname === to).text;
+  headerName() {
+    const { location: { pathname } } = this.props;
+    return config.locationMatchSetup[pathname].text;
+  }
 
   handleDrawerOpen = () => {
     this.setState({ open: true });
   };
 
-  handleDrawerClose = (currentRouteName = '') => {
+  handleDrawerClose = () => {
     this.setState({ open: false });
   };
 
   menuRoutes = () =>
-    ROUTE_CONFIGURATION.map(itemProps => (
+    config.views.map(itemProps => (
       <LinkAndClose
         key={`item${itemProps.to}`}
         {...itemProps}
@@ -165,7 +142,7 @@ class Menu extends React.PureComponent {
               <MenuIcon />
             </IconButton>
             <Typography type="title" color="inherit" noWrap>
-              {this.getHeaderNameFromLocation(location)}
+              {this.headerName}
             </Typography>
           </Toolbar>
         </AppBar>

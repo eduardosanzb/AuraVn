@@ -6,6 +6,7 @@ import MobileStepper from 'material-ui/MobileStepper';
 import Button from 'material-ui/Button';
 import KeyboardArrowLeft from 'material-ui-icons/KeyboardArrowLeft';
 import KeyboardArrowRight from 'material-ui-icons/KeyboardArrowRight';
+import config from '../../config';
 
 const styles = {
   root: {
@@ -14,54 +15,25 @@ const styles = {
   }
 };
 
-const locationMatchStep = {
-  '/': 0,
-  '/dress-type': 1,
-  '/dress-finish': 2,
-  '/face': 3,
-  '/hair': 4,
-  '/results': 5
-};
-class DotsMobileStepper extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      activeStep: this.getStepFromPathname(),
-      debugMode: true
-    };
-  }
+class DotsMobileStepper extends React.PureComponent {
+  state = {
+    activeStep: 0,
+    debugMode: config.debugMode
+  };
 
   componentDidUpdate({ location: { pathname } }) {
     const { location: { pathname: current } } = this.props;
     if (pathname !== current) {
       this.setState({
-        activeStep: this.getStepFromPathname()
+        activeStep: this.currentFunnelStep.funnelStep,
       });
     }
   }
 
-  getStepFromPathname = () => {
+  get currentFunnelStep() {
     const { location: { pathname } } = this.props;
-    return locationMatchStep[pathname];
-  };
-
-  // TODO: Remove when global config file
-  getPreviousPathname = () => {
-    const invertedObject = Object.assign(
-      {},
-      ...Object.entries(locationMatchStep).map(([a, b]) => ({ [b]: a }))
-    );
-    const index = this.getStepFromPathname() - 1;
-    return index >= 0 ? invertedObject[index] : '/';
-  };
-
-  getNextPathname = () => {
-    const invertedObject = Object.assign(
-      {},
-      ...Object.entries(locationMatchStep).map(([a, b]) => ({ [b]: a }))
-    );
-    const index = this.getStepFromPathname() + 1;
-    return index <= 5 ? invertedObject[index] : '/';
+    if(config.locationMatchStep)
+    return config.locationMatchSetup[pathname];
   };
 
   handleNext = () => {
@@ -77,13 +49,17 @@ class DotsMobileStepper extends React.Component {
   };
 
   render() {
-    const { classes } = this.props;
+    const { classes, location: { pathname } } = this.props;
     const { activeStep, debugMode } = this.state
+    const { previousFunnelStep = '/', nextFunnelStep='/' } = config.locationMatchStep[pathname];
 
+    console.log(config.locationMatchStep[pathname]);
+    console.log(previousFunnelStep);
+    console.log(nextFunnelStep);
     return (
       <MobileStepper
         type="dots"
-        steps={6}
+        steps={config.funnelTotalSteps}
         position="static"
         activeStep={activeStep}
         className={classes.root}
@@ -91,10 +67,10 @@ class DotsMobileStepper extends React.Component {
           debugMode ? (
             <Button
               component={Link}
-              to={this.getNextPathname()}
+              to={previousFunnelStep}
               dense
               onClick={this.handleNext}
-              disabled={this.state.activeStep === 5}>
+              disabled={this.state.activeStep === config.funnelTotalSteps - 1}>
               <KeyboardArrowRight />
               Next
             </Button>
@@ -105,7 +81,7 @@ class DotsMobileStepper extends React.Component {
         backButton={
           <Button
             component={Link}
-            to={this.getPreviousPathname()}
+            to={nextFunnelStep}
             dense
             onClick={this.handleBack}
             disabled={this.state.activeStep === 0}>
@@ -120,7 +96,6 @@ class DotsMobileStepper extends React.Component {
 
 DotsMobileStepper.propTypes = {
   classes: PropTypes.object.isRequired,
-  theme: PropTypes.object.isRequired
 };
 
-export default withStyles(styles, { withTheme: true })(DotsMobileStepper);
+export default withStyles(styles)(DotsMobileStepper);

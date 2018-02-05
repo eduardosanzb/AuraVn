@@ -1,12 +1,20 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-function Face({ ...props }) {
-  return <div>Face</div>;
-}
+import GenericFunnelStep from '../../components/GenericFunnelStep';
 
-Face.defaultProps = {};
+const Face = props => (
+  <GenericFunnelStep
+    headerText={'Your face shape'}
+    cardsKey={'faceType'}
+    defaultCurrentSelectionLabel={'Select your face shape'}
+    {...props}
+  />
+);
 
-Face.propTypes = {};
+Face.propTypes = {
+  currentSelection: PropTypes.string.isRequired,
+  onSelection: PropTypes.func.isRequired
+};
 
 export default Face;

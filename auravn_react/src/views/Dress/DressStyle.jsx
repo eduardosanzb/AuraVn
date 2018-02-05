@@ -1,12 +1,20 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-function DressStyle({ ...props }) {
-  return <div>DressStyle</div>;
-}
+import GenericFunnelStep from '../../components/GenericFunnelStep';
 
-DressStyle.defaultProps = {};
+const DressStyle = props => (
+  <GenericFunnelStep
+    headerText={'Your dress style'}
+    cardsKey={'dressStyle'}
+    defaultCurrentSelection={'Select the style of your dress'}
+    {...props}
+  />
+);
 
-DressStyle.propTypes = {};
+DressStyle.propTypes = {
+  currentSelection: PropTypes.string.isRequired,
+  onSelection: PropTypes.func.isRequired
+};
 
 export default DressStyle;
