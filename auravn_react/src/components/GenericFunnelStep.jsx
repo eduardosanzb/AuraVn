@@ -21,34 +21,23 @@ const styles = theme => ({
   root: {
     flexGrow: 1
   },
-  paperRoot: theme.mixins.gutters({
-    paddingTop: 10,
-    paddingBottom: 10,
-    maxHeight: 40,
+  paperRoot: {
+    position: 'fixed',
+    top: 55,
+    zIndex: 1,
+    width: '100%',
+    height: 70,
     display: 'flex',
-    justifyContent: 'space-between'
-  }),
-  header: { textAlign: 'center' },
-  card: {
-    minWidth: 275
+    flexGrow: 1,
+    flexDirection: 'column',
+    alignItems: 'center',
+    justifyContent: 'space-around'
   },
+  header: { textAlign: 'center' },
   list: {
+    paddingTop: 50,
     display: 'relative',
     overflow: 'auto'
-  },
-  bullet: {
-    display: 'inline-block',
-    margin: '0 2px',
-    transform: 'scale(0.8)'
-  },
-  title: {
-    marginBottom: 16,
-    fontSize: 14,
-    color: theme.palette.text.secondary
-  },
-  pos: {
-    marginBottom: 12,
-    color: theme.palette.text.secondary
   },
   fab: {
     position: 'fixed',
@@ -117,27 +106,20 @@ const GenericFunnelStep = ({
   };
   return (
     <Grid container justify="center" alignItems="center">
-      <Grid item xs={12}>
-        <Typography variant="title" className={classes.header}>
-          {headerText}
-        </Typography>
-      </Grid>
+        <Paper className={classes.paperRoot}>
+          <Typography variant="title" className={classes.header}>
+            {headerText}
+          </Typography>
 
+          <Typography>
+            Current Selection:{' '}
+            {currentSelection || defaultCurrentSelectionLabel}
+          </Typography>
+        </Paper>
       <Grid item xs={12}>
-        <div>
-          <List className={classes.list}>
-            <ListSubheader>
-              <Paper className={classes.paperRoot}>
-                <Typography>
-                  Current Selection:{' '}
-                  {currentSelection || defaultCurrentSelectionLabel}
-                </Typography>
-                <InfoIcon />
-              </Paper>
-            </ListSubheader>
-            {mockCards(cardsKey, classes, onSelection, currentSelection)}
-          </List>
-        </div>
+        <List className={classes.list}>
+          {mockCards(cardsKey, classes, onSelection, currentSelection)}
+        </List>
       </Grid>
       {nextButton({
         classes,
