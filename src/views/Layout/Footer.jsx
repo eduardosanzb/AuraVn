@@ -76,13 +76,10 @@ class Footer extends React.PureComponent {
         }
         backButton={
           <Button
-            component={Link}
-            to={previousFunnelStep}
             size="small"
-            onClick={this.handleBack}
-            disabled={this.state.activeStep === 0}>
-            <KeyboardArrowLeft />
-            Back
+            onClick={this.props.onClick}
+            >
+            Menu
           </Button>
         }
       />

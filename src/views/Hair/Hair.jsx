@@ -42,7 +42,6 @@ class Hair extends React.PureComponent {
   render() {
     return (
       <React.Fragment>
-        <div>Your Heigh</div>
         <GenericFunnelStep
           {...this.props}
           headerText={'Hair style of the big day!'}

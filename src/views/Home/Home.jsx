@@ -9,7 +9,6 @@ import Icon from 'material-ui-icons/PlayArrow';
 
 import Grid from 'material-ui/Grid';
 
-const IconPath = './icon.png';
 const styles = theme => ({
   root: {
     flexGrow: 1
@@ -40,7 +39,7 @@ function Home(props) {
       alignContent="center"
       justify="center">
       <Grid item xs={12}>
-        <img src={IconPath} className={classes.image} alt={'logo'}/>
+        <img src={'./icon.png'} className={classes.image} alt={'logo'}/>
       </Grid>
       <Grid item>
         <Button
