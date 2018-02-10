@@ -1,5 +1,6 @@
 {
   "name": "auravn_react",
+  "homepage": "https://eduardosanzb.github.io/aura",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
