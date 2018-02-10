@@ -15,9 +15,9 @@ const styles = {
   }
 };
 
-class DotsMobileStepper extends React.PureComponent {
+class Footer extends React.PureComponent {
   state = {
-    activeStep: 0,
+    activeStep: this.currentFunnelStep.funnelStep,
     debugMode: config.debugMode
   };
 
@@ -32,8 +32,7 @@ class DotsMobileStepper extends React.PureComponent {
 
   get currentFunnelStep() {
     const { location: { pathname } } = this.props;
-    if(config.locationMatchStep)
-    return config.locationMatchSetup[pathname];
+    return config.locationMatchStep[pathname];
   };
 
   handleNext = () => {
@@ -53,12 +52,9 @@ class DotsMobileStepper extends React.PureComponent {
     const { activeStep, debugMode } = this.state
     const { previousFunnelStep = '/', nextFunnelStep='/' } = config.locationMatchStep[pathname];
 
-    console.log(config.locationMatchStep[pathname]);
-    console.log(previousFunnelStep);
-    console.log(nextFunnelStep);
     return (
       <MobileStepper
-        type="dots"
+        variant="dots"
         steps={config.funnelTotalSteps}
         position="static"
         activeStep={activeStep}
@@ -67,8 +63,8 @@ class DotsMobileStepper extends React.PureComponent {
           debugMode ? (
             <Button
               component={Link}
-              to={previousFunnelStep}
-              dense
+              to={nextFunnelStep}
+              size="small"
               onClick={this.handleNext}
               disabled={this.state.activeStep === config.funnelTotalSteps - 1}>
               <KeyboardArrowRight />
@@ -81,8 +77,8 @@ class DotsMobileStepper extends React.PureComponent {
         backButton={
           <Button
             component={Link}
-            to={nextFunnelStep}
-            dense
+            to={previousFunnelStep}
+            size="small"
             onClick={this.handleBack}
             disabled={this.state.activeStep === 0}>
             <KeyboardArrowLeft />
@@ -94,8 +90,8 @@ class DotsMobileStepper extends React.PureComponent {
   }
 }
 
-DotsMobileStepper.propTypes = {
+Footer.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(DotsMobileStepper);
+export default withStyles(styles)(Footer);

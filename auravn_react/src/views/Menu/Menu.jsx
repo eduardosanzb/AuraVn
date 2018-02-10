@@ -7,9 +7,11 @@ import AppBar from 'material-ui/AppBar';
 import Toolbar from 'material-ui/Toolbar';
 import Typography from 'material-ui/Typography';
 import IconButton from 'material-ui/IconButton';
-import MenuIcon from 'material-ui-icons/Menu';
 import Drawer from 'material-ui/Drawer/Drawer';
+
 import ChevronLeftIcon from 'material-ui-icons/ChevronLeft';
+import MenuIcon from 'material-ui-icons/Menu';
+
 import Divider from 'material-ui/Divider';
 import List from 'material-ui/List';
 import grey from 'material-ui/colors/grey';
@@ -101,7 +103,7 @@ class Menu extends React.PureComponent {
 
   headerName() {
     const { location: { pathname } } = this.props;
-    return config.locationMatchSetup[pathname].text;
+    return config.locationMatchStep[pathname].text;
   }
 
   handleDrawerOpen = () => {
@@ -135,14 +137,14 @@ class Menu extends React.PureComponent {
           })}>
           <Toolbar disableGutters={!open}>
             <IconButton
-              color="contrast"
+              color="inherit"
               aria-label="open drawer"
               onClick={this.handleDrawerOpen}
               className={classNames(classes.menuButton, open && classes.hide)}>
               <MenuIcon />
             </IconButton>
-            <Typography type="title" color="inherit" noWrap>
-              {this.headerName}
+            <Typography variant="title" color="inherit" noWrap>
+              {this.headerName()}
             </Typography>
           </Toolbar>
         </AppBar>

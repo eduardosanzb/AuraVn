@@ -11,34 +11,34 @@ import Typography from 'material-ui/Typography';
 
 const styles = theme => ({
   root: {
-    flexGrow: 1,
+    flexGrow: 1
   },
   selected: {
     flexGrow: 1,
     outlineStyle: 'solid',
     outlineColor: theme.palette.primary.main,
-    outlineWidth: 2,
+    outlineWidth: 2
   },
   cardActions: {
-    float: 'right',
+    float: 'right'
   },
   cardContent: {
     width: '100%',
-    minHeight: 250,
+    minHeight: 250
   },
   media: {
-    maxHeight: 250,
-  },
+    maxHeight: 250
+  }
 });
 
 class AuraCard extends React.PureComponent {
   static propTypes = {
     children: PropTypes.node,
-    className: PropTypes.string,
+    className: PropTypes.string
   };
 
   state = {
-    flipped: false,
+    flipped: false
   };
 
   flipCard = () => {
@@ -52,7 +52,7 @@ class AuraCard extends React.PureComponent {
       <Card className={selected ? classes.selected : classes.root}>
         <CardActions className={classes.cardActions} disableActionSpacing>
           <IconButton
-            color={flipped ? 'accent' : 'primary'}
+            color={flipped ? 'secondary' : 'primary'}
             aria-label={`select-${name}`}
             onClick={this.flipCard}>
             {flipped ? <FlippedIcon /> : <InfoIcon />}
@@ -71,7 +71,7 @@ class AuraCard extends React.PureComponent {
                   title={`image-for-${name}`}
                   src={image}
                 />
-                <Typography type="headline" component="h2">
+                <Typography variant="headline" component="h2">
                   {name}
                 </Typography>
               </div>

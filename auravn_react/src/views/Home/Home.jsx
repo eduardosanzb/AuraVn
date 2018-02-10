@@ -45,7 +45,8 @@ function Home(props) {
       <Grid item>
         <Button
           className={classes.button}
-          raised
+          variant="raised"
+          raised="true"
           color="primary"
           component={Link}
           to="/dress-type">

@@ -5,18 +5,15 @@ import Hidden from 'material-ui/Hidden';
 
 import Layout from './views/Layout/Layout';
 import Menu from './views/Menu/Menu';
-import {  Route } from 'react-router-dom';
+import { Route } from 'react-router-dom';
 
 class App extends React.PureComponent {
-  constructor(props) {
-    super(props);
-    this.state = {
-      dressType: null,
-      dressStyle: null,
-      faceType: null,
-      hairType: null
-    };
-  }
+  state = {
+    dressType: '',
+    dressStyle: '',
+    faceType: '',
+    hairType: ''
+  };
 
   updateState = key => newValue => {
     // TODO: Add async update
@@ -39,7 +36,7 @@ class App extends React.PureComponent {
         <Reboot />
         <Hidden mdUp>
           <Route
-            path="/"
+            exact
             render={({ location }) => (
               <Menu content={Layout} location={location}>
                 <this.HOCLayout location={location} />

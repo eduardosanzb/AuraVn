@@ -7,7 +7,7 @@ const DressStyle = props => (
   <GenericFunnelStep
     headerText={'Your dress style'}
     cardsKey={'dressStyle'}
-    defaultCurrentSelection={'Select the style of your dress'}
+    defaultCurrentSelectionLabel={'Select the style of your dress'}
     {...props}
   />
 );
