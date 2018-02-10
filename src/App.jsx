@@ -38,7 +38,7 @@ class App extends React.PureComponent {
           <Route
             exact
             render={({ location }) => (
-              <Menu content={Layout} location={location}>
+              <Menu content={Layout} location={location} selections={this.state}>
                 <this.HOCLayout location={location} />
               </Menu>
             )}

@@ -1,7 +1,7 @@
 import React from 'react';
 // import PropTypes from 'prop-types';
 
-function Results({ ...props }) {
+function Results(props) {
   return <div>Results</div>;
 }
 

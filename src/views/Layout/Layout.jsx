@@ -37,12 +37,14 @@ const Layout = ({ location, selections, updateSelections }) => {
                   exact={exact}
                   path={to}
                   key={funnelStep}
-                  render={() => (
+                  render={({ history }) => (
                     <Component
                       currentSelection={selections[storeValue]}
+                      selections={selections}
                       onSelection={updateSelections(storeValue)}
+                      updateSelection={updateSelections}
                       currentPath={to}
-                      results={to === '/results' ? selections : null}
+                      history={history}
                     />
                   )}
                 />

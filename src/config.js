@@ -60,83 +60,83 @@ const config = {
     dressType: [
       {
         description: 'Lorem ipson',
-        image: './dress_a_shape.png',
+        image: 'https://auravn.ams3.digitaloceanspaces.com/dress_a_shape.png',
         name: '1'
       },
       {
         description: 'Lorem ipson',
-        image: './dress_greek.png',
+        image: 'https://auravn.ams3.digitaloceanspaces.com/dress_greek.png',
         name: '2'
       },
       {
         description: 'Lorem ipson',
-        image: './dress_mermaid.png',
+        image: 'https://auravn.ams3.digitaloceanspaces.com/dress_mermaid.png',
         name: '3'
       },
       {
         description: 'Lorem ipson',
-        image: './dress_princess.png',
+        image: 'https://auravn.ams3.digitaloceanspaces.com/dress_princess.png',
         name: '4'
       },
       {
         description: 'Lorem ipson',
-        image: './dress_straight.png',
+        image: 'https://auravn.ams3.digitaloceanspaces.com/dress_straight.png',
         name: '5'
       }
     ],
     dressStyle: [
       {
         description: 'Lorem ipson',
-        image: './dress_style_a.jpg',
+        image: 'https://auravn.ams3.digitaloceanspaces.com/dress_style_a.jpg',
         name: '1'
       },
       {
         description: 'Lorem ipson',
-        image: './dress_style_b.jpg',
+        image: 'https://auravn.ams3.digitaloceanspaces.com/dress_style_b.jpg',
         name: '2'
       }
     ],
     faceType: [
       {
         description: 'Lorem ipson',
-        image: './face_heart.jpg',
+        image: 'https://auravn.ams3.digitaloceanspaces.com/face_heart.jpg',
         name: 'face_heart'
       },
       {
         description: 'Lorem ipson',
-        image: './face_oval.jpg',
+        image: 'https://auravn.ams3.digitaloceanspaces.com/face_oval.jpg',
         name: 'face_oval'
       },
       {
         description: 'Lorem ipson',
-        image: './face_rectangle.jpg',
+        image: 'https://auravn.ams3.digitaloceanspaces.com/face_rectangle.jpg',
         name: 'face_rectangle'
       },
       {
         description: 'Lorem ipson',
-        image: './face_round.jpg',
+        image: 'https://auravn.ams3.digitaloceanspaces.com/face_round.jpg',
         name: 'face_round'
       }
     ],
     hairStyle: [
       {
         description: 'Lorem ipson',
-        image: './hair_alto.png',
+        image: 'https://auravn.ams3.digitaloceanspaces.com/hair_alto.png',
         name: 'hair_tall'
       },
       {
         description: 'Lorem ipson',
-        image: './hair_recogido.png',
+        image: 'https://auravn.ams3.digitaloceanspaces.com/hair_recogido.png',
         name: 'hair_short'
       },
       {
         description: 'Lorem ipson',
-        image: './hair_low.png',
+        image: 'https://auravn.ams3.digitaloceanspaces.com/hair_low.png',
         name: 'hair_low'
       },
       {
         description: 'Lorem ipson',
-        image: './hair_loose.png',
+        image: 'https://auravn.ams3.digitaloceanspaces.com/hair_loose.png',
         name: 'hair_loose'
       }
     ]

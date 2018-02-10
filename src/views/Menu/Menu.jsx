@@ -119,6 +119,7 @@ class Menu extends React.PureComponent {
       <LinkAndClose
         key={`item${itemProps.to}`}
         {...itemProps}
+        selectionReady={this.props.selections[itemProps.storeValue]}
         drawerOpened={this.state.open}
         closeDrawer={this.handleDrawerClose}
       />

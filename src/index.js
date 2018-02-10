@@ -9,7 +9,7 @@ import grey from 'material-ui/colors/grey';
 
 import App from './App';
 import registerServiceWorker from './registerServiceWorker';
-import 'typeface-roboto';
+// import 'typeface-roboto';
 
 const theme = createMuiTheme({
   palette: {
