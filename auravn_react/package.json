@@ -1,0 +1,31 @@
+{
+  "name": "auravn_react",
+  "homepage": "https://eduardosanzb.github.io/aura",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "@babel/core": "^7.0.0-beta.38",
+    "@babel/plugin-transform-react-jsx": "^7.0.0-beta.38",
+    "@babel/preset-react": "^7.0.0-beta.38",
+    "animated": "^0.2.1",
+    "material-design-icons-iconfont": "^3.0.3",
+    "material-ui": "^1.0.0-beta.28",
+    "material-ui-icons": "^1.0.0-beta.17",
+    "react": "^16.2.0",
+    "react-addons-css-transition-group": "^15.6.2",
+    "react-dom": "^16.2.0",
+    "react-router-dom": "^4.2.2",
+    "react-transition-group": "^2.2.1",
+    "recompose": "^0.26.0",
+    "typeface-roboto": "0.0.45"
+  },
+  "devDependencies": {
+    "react-scripts": "1.0.17"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject"
+  }
+}
