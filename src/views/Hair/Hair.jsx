@@ -14,7 +14,7 @@ import GenericFunnelStep from '../../components/GenericFunnelStep';
 class Hair extends React.PureComponent {
   state = {
     showDialog: !!this.props.selections.height,
-    height: this.props.selections.height || '',
+    height: this.props.selections.height || ''
   };
 
   showHeightDialog = selection => {
@@ -36,36 +36,37 @@ class Hair extends React.PureComponent {
   };
 
   changeHeigh = e => {
-    this.setState({ height: e.target.value });
+    this.setState({ height: Number(e.target.value) });
   };
 
+  validateHeight = () => {
+    const { height } = this.state;
+    return !height || height < 120 || height > 250;
+  };
   render() {
     return (
       <React.Fragment>
         <GenericFunnelStep
           {...this.props}
-          headerText={'Hair style of the big day!'}
+          headerText={'El gran peinado 💇🏻'}
           cardsKey={'hairStyle'}
-          defaultCurrentSelectionLabel={'Select a hair style'}
           onSelection={this.showHeightDialog}
         />
         <Dialog
           open={this.state.showDialog}
           onClose={this.hideHeighDialog}
           aria-labelledby="form-dialog-title">
-          <DialogTitle id="form-dialog-title">Height</DialogTitle>
+          <DialogTitle id="form-dialog-title">Tu altura</DialogTitle>
           <DialogContent>
             <DialogContentText>
-              Input your height in centimeters.
+              Escribe tu altura en centimetros.
             </DialogContentText>
             <TextField
               id="number"
-              value={this.state.height}
+              defaultValue=''
+              value={this.state.height || ''}
               onChange={this.changeHeigh}
               type="number"
-              InputLabelProps={{
-                shrink: true
-              }}
               margin="normal"
             />
           </DialogContent>
@@ -73,7 +74,10 @@ class Hair extends React.PureComponent {
             <Button onClick={this.hideHeighDialog} color="primary">
               Cancel
             </Button>
-            <Button onClick={this.goToResults} color="primary">
+            <Button
+              disabled={this.validateHeight()}
+              onClick={this.goToResults}
+              color="primary">
               Ok
             </Button>
           </DialogActions>

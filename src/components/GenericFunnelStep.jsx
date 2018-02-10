@@ -15,37 +15,34 @@ import List, { ListItem } from 'material-ui/List';
 import config from '../config';
 import AuraCard from './Card';
 
-const styles = theme => {
-  console.log('theme', theme);
-  return {
-    root: {
-      flexGrow: 1
-    },
-    paperRoot: {
-      position: 'fixed',
-      top: 0,
-      zIndex: 1,
-      width: '100%',
-      height: 70,
-      display: 'flex',
-      flexGrow: 1,
-      flexDirection: 'column',
-      alignItems: 'center',
-      justifyContent: 'space-around'
-    },
-    header: { textAlign: 'center' },
-    list: {
-      // paddingTop: 60,
-      display: 'relative',
-      overflow: 'auto'
-    },
-    fab: {
-      position: 'fixed',
-      bottom: 60,
-      right: theme.spacing.unit * 2
-    }
-  };
-};
+const styles = theme => ({
+  root: {
+    flexGrow: 1
+  },
+  paperRoot: {
+    position: 'fixed',
+    top: 0,
+    zIndex: 1,
+    width: '100%',
+    height: 70,
+    display: 'flex',
+    flexGrow: 1,
+    flexDirection: 'column',
+    alignItems: 'center',
+    justifyContent: 'space-around'
+  },
+  header: { textAlign: 'center' },
+  list: {
+    // paddingTop: 60,
+    display: 'relative',
+    overflow: 'auto'
+  },
+  fab: {
+    position: 'fixed',
+    bottom: 60,
+    right: theme.spacing.unit * 2
+  }
+});
 
 const mockCards = (cardsKey, classes, onClick, currentSelection) => {
   if (!Object.keys(config.cards).includes(cardsKey)) {
@@ -112,21 +109,24 @@ const GenericFunnelStep = ({
           {headerText}
         </Typography>
 
+        {currentSelection &&
         <Typography>
-          Current Selection: {currentSelection || defaultCurrentSelectionLabel}
+          Haz seleccionado: {currentSelection}!
         </Typography>
+        }
       </Paper>
       <Grid item xs={12}>
         <List className={classes.list}>
           {mockCards(cardsKey, classes, onSelection, currentSelection)}
         </List>
       </Grid>
-      {nextButton({
-        classes,
-        currentSelection,
-        transitionDuration,
-        currentPath
-      })}
+      {currentPath !== '/hair' &&
+        nextButton({
+          classes,
+          currentSelection,
+          transitionDuration,
+          currentPath
+        })}
     </Grid>
   );
 };

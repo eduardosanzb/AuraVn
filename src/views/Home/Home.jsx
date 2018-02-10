@@ -49,7 +49,7 @@ function Home(props) {
           color="primary"
           component={Link}
           to="/dress-type">
-          Start
+          Encuentra tu velo perfecto
           <Icon />
         </Button>
       </Grid>
