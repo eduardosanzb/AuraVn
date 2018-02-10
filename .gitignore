@@ -7,3 +7,4 @@ platforms/
 plugins/
 old_working/node_modules
 Server_mail/node_modules
+build/
