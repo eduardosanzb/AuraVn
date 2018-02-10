@@ -7,12 +7,10 @@ import Grid from 'material-ui/Grid';
 import Paper from 'material-ui/Paper';
 import Zoom from 'material-ui/transitions/Zoom';
 import Typography from 'material-ui/Typography';
-import InfoIcon from 'material-ui-icons/InfoOutline';
 import NextIcon from 'material-ui-icons/NavigateNext';
 import Button from 'material-ui/Button';
 
 import List, { ListItem } from 'material-ui/List';
-import ListSubheader from 'material-ui/List/ListSubheader';
 
 import config from '../config';
 import AuraCard from './Card';
