@@ -1,5 +1,5 @@
 const config = {
-  debugMode: true,
+  debugMode: false,
   funnelTotalSteps: 6,
   views: [
     {

@@ -41,6 +41,7 @@ const Layout = ({ location, selections, updateSelections }) => {
                     <Component
                       currentSelection={selections[storeValue]}
                       onSelection={updateSelections(storeValue)}
+                      currentPath={to}
                       results={to === '/results' ? selections : null}
                     />
                   )}

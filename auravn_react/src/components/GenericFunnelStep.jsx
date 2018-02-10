@@ -1,16 +1,18 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 
 import { withStyles } from 'material-ui/styles';
 import Grid from 'material-ui/Grid';
 import Paper from 'material-ui/Paper';
+import Zoom from 'material-ui/transitions/Zoom';
 import Typography from 'material-ui/Typography';
 import InfoIcon from 'material-ui-icons/InfoOutline';
 import NextIcon from 'material-ui-icons/NavigateNext';
-import Zoom from 'material-ui/transitions/Zoom';
 import Button from 'material-ui/Button';
 
 import List, { ListItem } from 'material-ui/List';
+import ListSubheader from 'material-ui/List/ListSubheader';
 
 import config from '../config';
 import AuraCard from './Card';
@@ -49,8 +51,8 @@ const styles = theme => ({
     color: theme.palette.text.secondary
   },
   fab: {
-    position: 'absolute',
-    bottom: theme.spacing.unit * 2,
+    position: 'fixed',
+    bottom: 60,
     right: theme.spacing.unit * 2
   }
 });
@@ -73,7 +75,12 @@ const mockCards = (cardsKey, classes, onClick, currentSelection) => {
   ));
 };
 
-const nextButton = ({ classes, transitionDuration, currentSelection }) => (
+const nextButton = ({
+  classes,
+  transitionDuration,
+  currentSelection,
+  currentPath
+}) => (
   <Zoom
     key="next-view"
     in={!!currentSelection}
@@ -82,7 +89,12 @@ const nextButton = ({ classes, transitionDuration, currentSelection }) => (
       transitionDelay: currentSelection ? transitionDuration.exit : 0
     }}
     unmountOnExit>
-    <Button variant="fab" className={classes.fab} color="primary">
+    <Button
+      component={Link}
+      to={config.locationMatchStep[currentPath].nextFunnelStep}
+      variant="fab"
+      className={classes.fab}
+      color="primary">
       <NextIcon />
     </Button>
   </Zoom>
@@ -95,7 +107,9 @@ const GenericFunnelStep = ({
   theme,
   defaultCurrentSelectionLabel,
   currentSelection,
-  onSelection
+  onSelection,
+  nextView,
+  currentPath
 }) => {
   const transitionDuration = {
     enter: theme.transitions.duration.enteringScreen,
@@ -104,25 +118,33 @@ const GenericFunnelStep = ({
   return (
     <Grid container justify="center" alignItems="center">
       <Grid item xs={12}>
-        <Typography className={classes.header}>{headerText}</Typography>
+        <Typography variant="title" className={classes.header}>
+          {headerText}
+        </Typography>
       </Grid>
-      <Grid item xs={12}>
-        <Paper className={classes.paperRoot}>
-          <Typography>
-            Current Selection:{' '}
-            {currentSelection || defaultCurrentSelectionLabel}
-          </Typography>
-          <InfoIcon />
-        </Paper>
-      </Grid>
+
       <Grid item xs={12}>
         <div>
           <List className={classes.list}>
+            <ListSubheader>
+              <Paper className={classes.paperRoot}>
+                <Typography>
+                  Current Selection:{' '}
+                  {currentSelection || defaultCurrentSelectionLabel}
+                </Typography>
+                <InfoIcon />
+              </Paper>
+            </ListSubheader>
             {mockCards(cardsKey, classes, onSelection, currentSelection)}
           </List>
         </div>
       </Grid>
-      {nextButton({ classes, currentSelection, transitionDuration })}
+      {nextButton({
+        classes,
+        currentSelection,
+        transitionDuration,
+        currentPath
+      })}
     </Grid>
   );
 };
