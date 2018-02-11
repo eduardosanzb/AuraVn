@@ -61,7 +61,7 @@ const config = {
       {
         description: 'Lorem ipson',
         image: 'https://auravn.ams3.digitaloceanspaces.com/dress_a_shape.png',
-        name: 'En A'
+        name: 'A'
       },
       {
         description: 'Lorem ipson',
