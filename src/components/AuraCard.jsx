@@ -26,7 +26,8 @@ const styles = theme => ({
   },
   cardContent: {
     width: '100%',
-    minHeight: 300
+    minHeight: 300,
+    display: 'flex'
   },
   media: {
     maxHeight: 250,
@@ -34,6 +35,11 @@ const styles = theme => ({
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.leavingScreen
     })
+  },
+  progress: {
+    position: 'absolute',
+    top: '40%',
+    left: '40%'
   }
 });
 const defaultStyle = {
@@ -44,6 +50,7 @@ const transitionStyles = {
   entering: { opacity: 0 },
   entered: { opacity: 1 }
 };
+
 class AuraCard extends React.PureComponent {
   static propTypes = {
     children: PropTypes.node,
@@ -80,7 +87,11 @@ class AuraCard extends React.PureComponent {
           <CardContent>
             {flipped === false && (
               <div>
-                <Transition in={!imageLoaded} timeout={300}>
+                <Transition
+                  in={!imageLoaded}
+                  timeout={300}
+                  unmountOnExit
+                  enter={false}>
                   {state => (
                     <CircularProgress
                       className={classes.progress}
@@ -92,6 +103,8 @@ class AuraCard extends React.PureComponent {
                     />
                   )}
                 </Transition>
+
+                {/* TODO: Use redux to detect if the image was already fetched */}
                 <Transition in={imageLoaded} timeout={500}>
                   {state => (
                     <img
@@ -104,7 +117,6 @@ class AuraCard extends React.PureComponent {
                       title={`image-for-${name}`}
                       src={image}
                       onLoad={() => {
-                        console.log('loaded');
                         this.setState({ imageLoaded: true });
                       }}
                     />

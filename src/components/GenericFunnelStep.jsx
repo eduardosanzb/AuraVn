@@ -13,11 +13,11 @@ import Button from 'material-ui/Button';
 import List, { ListItem } from 'material-ui/List';
 
 import config from '../config';
-import AuraCard from './Card';
+import AuraCard from './AuraCard';
 
 const styles = theme => ({
   root: {
-    flexGrow: 1
+    flexGrow: 1,
   },
   paperRoot: {
     position: 'fixed',
@@ -29,58 +29,51 @@ const styles = theme => ({
     flexGrow: 1,
     flexDirection: 'column',
     alignItems: 'center',
-    justifyContent: 'space-around'
+    justifyContent: 'space-around',
   },
   header: { textAlign: 'center' },
   list: {
     display: 'relative',
-    overflow: 'auto'
+    overflow: 'auto',
   },
   fab: {
     position: 'fixed',
     bottom: 60,
-    right: theme.spacing.unit * 2
-  }
+    right: theme.spacing.unit * 2,
+  },
 });
 
 const mockCards = (cardsKey, classes, onClick, currentSelection) => {
   if (!Object.keys(config.cards).includes(cardsKey)) {
-    throw new Error(
-      `The cardsKey ${cardsKey} is not in the configuration file`
-    );
+    throw new Error(`The cardsKey ${cardsKey} is not in the configuration file`);
   }
 
-  return config.cards[cardsKey].map((props, index) => (
-    <ListItem key={`${index}-${props.name}`}>
-      <AuraCard
-        {...props}
-        onClick={onClick}
-        selected={currentSelection === props.name}
-      />
+  return config.cards[cardsKey].map(props => (
+    <ListItem key={`${props.name}`}>
+      <AuraCard {...props} onClick={onClick} selected={currentSelection === props.name} />
     </ListItem>
   ));
 };
 
 const nextButton = ({
-  classes,
-  transitionDuration,
-  currentSelection,
-  currentPath
+  classes, transitionDuration, currentSelection, currentPath,
 }) => (
   <Zoom
     key="next-view"
     in={!!currentSelection}
     timeout={transitionDuration}
     style={{
-      transitionDelay: currentSelection ? transitionDuration.exit : 0
+      transitionDelay: currentSelection ? transitionDuration.exit : 0,
     }}
-    unmountOnExit>
+    unmountOnExit
+  >
     <Button
       component={Link}
       to={config.locationMatchStep[currentPath].nextFunnelStep}
       variant="fab"
       className={classes.fab}
-      color="primary">
+      color="primary"
+    >
       <NextIcon />
     </Button>
   </Zoom>
@@ -93,25 +86,27 @@ const GenericFunnelStep = ({
   theme,
   currentSelection,
   onSelection,
-  nextView,
-  currentPath
+  currentPath,
 }) => {
   const transitionDuration = {
     enter: theme.transitions.duration.enteringScreen,
-    exit: theme.transitions.duration.leavingScreen
+    exit: theme.transitions.duration.leavingScreen,
   };
   return (
-    <Grid container justify="center" alignItems="center">
+    <Grid
+      container
+      justify="center"
+      alignItems="center"
+      ref={(el) => {
+        this.top = el;
+      }}
+    >
       <Paper className={classes.paperRoot}>
         <Typography variant="title" className={classes.header}>
           {headerText}
         </Typography>
 
-        {currentSelection &&
-        <Typography>
-          Haz seleccionado: {currentSelection}!
-        </Typography>
-        }
+        {currentSelection && <Typography>Haz seleccionado: {currentSelection}!</Typography>}
       </Paper>
       <Grid item xs={12}>
         <List className={classes.list}>
@@ -123,19 +118,20 @@ const GenericFunnelStep = ({
           classes,
           currentSelection,
           transitionDuration,
-          currentPath
+          currentPath,
         })}
     </Grid>
   );
 };
 
 GenericFunnelStep.propTypes = {
-  classes: PropTypes.object.isRequired,
-  theme: PropTypes.object.isRequired,
+  classes: PropTypes.shape({}).isRequired,
+  theme: PropTypes.shape({}).isRequired,
   headerText: PropTypes.string.isRequired,
+  currentPath: PropTypes.string.isRequired,
   cardsKey: PropTypes.string.isRequired,
   currentSelection: PropTypes.string.isRequired,
-  onSelection: PropTypes.func.isRequired
+  onSelection: PropTypes.func.isRequired,
 };
 
 export default withStyles(styles, { withTheme: true })(GenericFunnelStep);
