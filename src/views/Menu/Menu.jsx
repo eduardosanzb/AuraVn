@@ -3,18 +3,13 @@ import React from 'react';
 import { withStyles } from 'material-ui/styles';
 import classNames from 'classnames';
 
-import AppBar from 'material-ui/AppBar';
-import Toolbar from 'material-ui/Toolbar';
-import Typography from 'material-ui/Typography';
 import IconButton from 'material-ui/IconButton';
 import Drawer from 'material-ui/Drawer/Drawer';
 
-import ChevronLeftIcon from 'material-ui-icons/ArrowDownward';
-import MenuIcon from 'material-ui-icons/Menu';
+import ArrowDownwardIcon from 'material-ui-icons/ArrowDownward';
 
 import Divider from 'material-ui/Divider';
 import List from 'material-ui/List';
-import grey from 'material-ui/colors/grey';
 
 import config from '../../config';
 import LinkAndClose from './../../components/LinkAndClose';
@@ -114,7 +109,7 @@ class Menu extends React.PureComponent {
           <div className={classes.drawerInner}>
             <div className={classes.drawerHeader}>
               <IconButton onClick={this.handleDrawerClose}>
-                <ChevronLeftIcon />
+                <ArrowDownwardIcon />
               </IconButton>
             </div>
             <Divider />

@@ -17,7 +17,7 @@ const getIcon = to => {
     case '/':
       return <HomeIcon />;
 
-    case '/dress-type':
+    case '/dress-style':
       return <Dress1Icon />;
 
     case '/dress-finish':
@@ -56,17 +56,17 @@ const LinkAndClose = ({
   closeDrawer,
   icon
 }) => (
-  <ListItem
-    className={root}
-    button
-    onClick={() => (drawerOpened ? closeDrawer(text) : null)}>
-    <ListItemIcon>{getIcon(to)}</ListItemIcon>
-    <Link to={to} className={noDecoration}>
+  <Link to={to} className={noDecoration}>
+    <ListItem
+      className={root}
+      button
+      onClick={() => (drawerOpened ? closeDrawer(text) : null)}>
+      <ListItemIcon>{getIcon(to)}</ListItemIcon>
       <ListItemText primary={text} />
-    </Link>
-    {selectionReady && <CheckCircle color="primary" fontSize />}
-    <Divider />
-  </ListItem>
+      {selectionReady && <CheckCircle color="primary" fontSize />}
+      <Divider />
+    </ListItem>
+  </Link>
 );
 
 export default withStyles(styles)(LinkAndClose);

@@ -9,7 +9,7 @@ import { Route } from 'react-router-dom';
 
 class App extends React.PureComponent {
   state = {
-    dressType: '',
+    dressFinish: '',
     dressStyle: '',
     faceType: '',
     hairType: ''

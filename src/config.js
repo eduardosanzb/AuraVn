@@ -5,33 +5,33 @@ const config = {
     {
       to: '/',
       exact: true,
-      text: 'Home',
+      text: 'Inicio',
       funnelStep: 0,
       previousFunnelStep: '/results',
-      nextFunnelStep: '/dress-type',
+      nextFunnelStep: '/dress-style',
       component: 'Home'
     },
     {
-      to: '/dress-type',
-      text: 'Dress 1',
-      storeValue: 'dressType',
+      text: 'Estilo del vestido',
+      storeValue: 'dressStyle',
       funnelStep: 1,
+      to: '/dress-style',
       previousFunnelStep: '/',
       nextFunnelStep: '/dress-finish',
-      component: 'DressType'
-    },
-    {
-      to: '/dress-finish',
-      text: 'Dress 2',
-      storeValue: 'dressStyle',
-      funnelStep: 2,
-      previousFunnelStep: '/dress-type',
-      nextFunnelStep: '/face',
       component: 'DressStyle'
     },
     {
+      to: '/dress-finish',
+      text: 'Acabado del vestido',
+      storeValue: 'dressFinish',
+      funnelStep: 2,
+      previousFunnelStep: '/dress-style',
+      nextFunnelStep: '/face',
+      component: 'DressFinish'
+    },
+    {
       to: '/face',
-      text: 'Type of Face',
+      text: 'Tipo de rostro',
       storeValue: 'faceType',
       funnelStep: 3,
       previousFunnelStep: '/dress-finish',
@@ -40,7 +40,7 @@ const config = {
     },
     {
       to: '/hair',
-      text: 'Hair Style',
+      text: 'Peinado',
       storeValue: 'hairType',
       funnelStep: 4,
       previousFunnelStep: '/face',
@@ -49,7 +49,7 @@ const config = {
     },
     {
       to: '/results',
-      text: 'Results',
+      text: 'Resultados',
       previousFunnelStep: '/hair',
       nextFunnelStep: '/',
       funnelStep: 5,
@@ -57,34 +57,34 @@ const config = {
     }
   ],
   cards: {
-    dressType: [
+    dressStyle: [
       {
         description: 'Lorem ipson',
         image: 'https://auravn.ams3.digitaloceanspaces.com/dress_a_shape.png',
-        name: '1'
+        name: 'En A'
       },
       {
         description: 'Lorem ipson',
         image: 'https://auravn.ams3.digitaloceanspaces.com/dress_greek.png',
-        name: '2'
+        name: 'Griego'
       },
       {
         description: 'Lorem ipson',
         image: 'https://auravn.ams3.digitaloceanspaces.com/dress_mermaid.png',
-        name: '3'
+        name: 'Sirena'
       },
       {
         description: 'Lorem ipson',
         image: 'https://auravn.ams3.digitaloceanspaces.com/dress_princess.png',
-        name: '4'
+        name: 'Princesa'
       },
       {
         description: 'Lorem ipson',
         image: 'https://auravn.ams3.digitaloceanspaces.com/dress_straight.png',
-        name: '5'
+        name: 'Recto'
       }
     ],
-    dressStyle: [
+    dressFinish: [
       {
         description: 'Lorem ipson',
         image: 'https://auravn.ams3.digitaloceanspaces.com/dress_style_a.jpg',

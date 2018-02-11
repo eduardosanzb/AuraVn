@@ -4,14 +4,16 @@ import { TransitionGroup, CSSTransition } from 'react-transition-group';
 
 import config from '../../config';
 import Home from '../Home';
-import Dress from '../Dress';
+import DressStyle from '../Dress/DressStyle';
+import DressFinish from '../Dress/DressFinish';
 import Face from '../Face';
 import Hair from '../Hair';
 import Results from '../Results';
 
 const Components = {
   Home,
-  ...Dress,
+  DressStyle,
+  DressFinish,
   Face,
   Hair,
   Results
@@ -27,7 +29,7 @@ const Layout = ({ location, selections, updateSelections }) => {
           mountOnEnter={true}
           unmountOnExit={true}
           exit={false}
-          timeout={location.pathname === '/dress-type' ? 2500 : 200}>
+          timeout={location.pathname === '/dress-style' ? 2500 : 200}>
           <Switch location={location}>
             {config.views.map(({ component, exact, to, storeValue, funnelStep }) => {
               const Component = Components[component];

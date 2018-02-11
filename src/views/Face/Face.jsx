@@ -5,9 +5,8 @@ import GenericFunnelStep from '../../components/GenericFunnelStep';
 
 const Face = props => (
   <GenericFunnelStep
-    headerText={'Your face shape'}
+    headerText={'Tu tipo de rostro 🙆🏻'}
     cardsKey={'faceType'}
-    defaultCurrentSelectionLabel={'Select your face shape'}
     {...props}
   />
 );

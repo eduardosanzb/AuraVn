@@ -5,9 +5,8 @@ import GenericFunnelStep from '../../components/GenericFunnelStep';
 
 const DressStyle = props => (
   <GenericFunnelStep
-    headerText={'Your dress style'}
+    headerText={'Estilo de tu vestido 👸🏻'}
     cardsKey={'dressStyle'}
-    defaultCurrentSelectionLabel={'Select the style of your dress'}
     {...props}
   />
 );

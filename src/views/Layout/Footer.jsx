@@ -4,7 +4,6 @@ import { Link } from 'react-router-dom';
 import { withStyles } from 'material-ui/styles';
 import MobileStepper from 'material-ui/MobileStepper';
 import Button from 'material-ui/Button';
-import KeyboardArrowLeft from 'material-ui-icons/KeyboardArrowLeft';
 import KeyboardArrowRight from 'material-ui-icons/KeyboardArrowRight';
 import config from '../../config';
 
@@ -50,7 +49,7 @@ class Footer extends React.PureComponent {
   render() {
     const { classes, location: { pathname } } = this.props;
     const { activeStep, debugMode } = this.state
-    const { previousFunnelStep = '/', nextFunnelStep='/' } = config.locationMatchStep[pathname];
+    const { nextFunnelStep='/' } = config.locationMatchStep[pathname];
 
     return (
       <MobileStepper

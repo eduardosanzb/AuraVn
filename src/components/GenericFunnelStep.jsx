@@ -92,7 +92,6 @@ const GenericFunnelStep = ({
   cardsKey,
   classes,
   theme,
-  defaultCurrentSelectionLabel,
   currentSelection,
   onSelection,
   nextView,
@@ -136,7 +135,6 @@ GenericFunnelStep.propTypes = {
   theme: PropTypes.object.isRequired,
   headerText: PropTypes.string.isRequired,
   cardsKey: PropTypes.string.isRequired,
-  defaultCurrentSelectionLabel: PropTypes.string.isRequired,
   currentSelection: PropTypes.string.isRequired,
   onSelection: PropTypes.func.isRequired
 };

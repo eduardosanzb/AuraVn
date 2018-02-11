@@ -63,7 +63,6 @@ class Hair extends React.PureComponent {
             </DialogContentText>
             <TextField
               id="number"
-              defaultValue=''
               value={this.state.height || ''}
               onChange={this.changeHeigh}
               type="number"
