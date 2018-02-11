@@ -88,56 +88,56 @@ const config = {
       {
         description: 'Lorem ipson',
         image: 'https://auravn.ams3.digitaloceanspaces.com/dress_style_a.jpg',
-        name: '1'
+        name: 'Encaje, bordado, pedreria'
       },
       {
         description: 'Lorem ipson',
         image: 'https://auravn.ams3.digitaloceanspaces.com/dress_style_b.jpg',
-        name: '2'
+        name: 'Liso'
       }
     ],
     faceType: [
       {
         description: 'Lorem ipson',
         image: 'https://auravn.ams3.digitaloceanspaces.com/face_heart.jpg',
-        name: 'face_heart'
+        name: 'Corazon'
       },
       {
         description: 'Lorem ipson',
         image: 'https://auravn.ams3.digitaloceanspaces.com/face_oval.jpg',
-        name: 'face_oval'
+        name: 'Ovalado'
       },
       {
         description: 'Lorem ipson',
         image: 'https://auravn.ams3.digitaloceanspaces.com/face_rectangle.jpg',
-        name: 'face_rectangle'
+        name: 'Cuadrado'
       },
       {
         description: 'Lorem ipson',
         image: 'https://auravn.ams3.digitaloceanspaces.com/face_round.jpg',
-        name: 'face_round'
+        name: 'Redondo'
       }
     ],
     hairStyle: [
       {
         description: 'Lorem ipson',
         image: 'https://auravn.ams3.digitaloceanspaces.com/hair_alto.png',
-        name: 'hair_tall'
+        name: 'Moño alto'
       },
       {
         description: 'Lorem ipson',
         image: 'https://auravn.ams3.digitaloceanspaces.com/hair_recogido.png',
-        name: 'hair_short'
+        name: 'Moño bajo'
       },
       {
         description: 'Lorem ipson',
         image: 'https://auravn.ams3.digitaloceanspaces.com/hair_low.png',
-        name: 'hair_low'
+        name: 'Medio recogido'
       },
       {
         description: 'Lorem ipson',
         image: 'https://auravn.ams3.digitaloceanspaces.com/hair_loose.png',
-        name: 'hair_loose'
+        name: 'Suelto'
       }
     ]
   }

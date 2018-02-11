@@ -33,7 +33,6 @@ const styles = theme => ({
   },
   header: { textAlign: 'center' },
   list: {
-    // paddingTop: 60,
     display: 'relative',
     overflow: 'auto'
   },
