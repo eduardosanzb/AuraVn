@@ -1,8 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import Transition from 'react-transition-group/Transition';
 
 import { withStyles } from 'material-ui/styles';
 import Card, { CardActions, CardContent } from 'material-ui/Card';
+import { CircularProgress } from 'material-ui/Progress';
 import IconButton from 'material-ui/IconButton';
 import InfoIcon from 'material-ui-icons/InfoOutline';
 import FlippedIcon from 'material-ui-icons/HighlightOff';
@@ -24,13 +26,24 @@ const styles = theme => ({
   },
   cardContent: {
     width: '100%',
-    minHeight: 250
+    minHeight: 300
   },
   media: {
-    maxHeight: 250
+    maxHeight: 250,
+    transition: theme.transitions.create('margin', {
+      easing: theme.transitions.easing.sharp,
+      duration: theme.transitions.duration.leavingScreen
+    })
   }
 });
-
+const defaultStyle = {
+  transition: `opacity 500ms ease-in-out`,
+  opacity: 0
+};
+const transitionStyles = {
+  entering: { opacity: 0 },
+  entered: { opacity: 1 }
+};
 class AuraCard extends React.PureComponent {
   static propTypes = {
     children: PropTypes.node,
@@ -38,15 +51,17 @@ class AuraCard extends React.PureComponent {
   };
 
   state = {
-    flipped: false
+    flipped: false,
+    imageLoaded: false
   };
 
   flipCard = () => {
     this.setState(({ flipped }) => ({ flipped: !flipped }));
   };
+
   render() {
     const { classes, name, description, image, selected, onClick } = this.props;
-    const { flipped } = this.state;
+    const { flipped, imageLoaded } = this.state;
 
     return (
       <Card className={selected ? classes.selected : classes.root}>
@@ -65,12 +80,36 @@ class AuraCard extends React.PureComponent {
           <CardContent>
             {flipped === false && (
               <div>
-                <img
-                  alt={name}
-                  className={classes.media}
-                  title={`image-for-${name}`}
-                  src={image}
-                />
+                <Transition in={!imageLoaded} timeout={300}>
+                  {state => (
+                    <CircularProgress
+                      className={classes.progress}
+                      size={50}
+                      style={{
+                        ...defaultStyle,
+                        ...transitionStyles[state]
+                      }}
+                    />
+                  )}
+                </Transition>
+                <Transition in={imageLoaded} timeout={500}>
+                  {state => (
+                    <img
+                      alt={name}
+                      className={classes.media}
+                      style={{
+                        ...defaultStyle,
+                        ...transitionStyles[state]
+                      }}
+                      title={`image-for-${name}`}
+                      src={image}
+                      onLoad={() => {
+                        console.log('loaded');
+                        this.setState({ imageLoaded: true });
+                      }}
+                    />
+                  )}
+                </Transition>
                 <Typography variant="headline" component="h2">
                   {name}
                 </Typography>
