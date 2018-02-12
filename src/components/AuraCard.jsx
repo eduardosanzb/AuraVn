@@ -26,6 +26,7 @@ const styles = theme => ({
   },
   cardContent: {
     width: '100%',
+    minWidth: 300,
     minHeight: 300,
     display: 'flex'
   },

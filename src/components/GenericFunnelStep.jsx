@@ -1,8 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import compose from 'recompose/compose';
 import { Link } from 'react-router-dom';
 
 import { withStyles } from 'material-ui/styles';
+import withWidth from 'material-ui/utils/withWidth';
+
 import Grid from 'material-ui/Grid';
 import Paper from 'material-ui/Paper';
 import Zoom from 'material-ui/transitions/Zoom';
@@ -15,7 +18,8 @@ import List, { ListItem } from 'material-ui/List';
 import config from '../config';
 import AuraCard from './AuraCard';
 
-const styles = theme => ({
+const styles = theme => {  
+  return {
   root: {
     flexGrow: 1,
   },
@@ -35,13 +39,28 @@ const styles = theme => ({
   list: {
     display: 'relative',
     overflow: 'auto',
+    [theme.breakpoints.between('md', 'xl')]: {
+      paddingTop: 60
+    },
   },
   fab: {
     position: 'fixed',
-    bottom: 60,
-    right: theme.spacing.unit * 2,
+    bottom: 65,
+    [theme.breakpoints.only('md')]: {
+      right: 340
+    },
+    [theme.breakpoints.only('lg')]: {
+      right: 455
+    },
+    [theme.breakpoints.only('xl')]: {
+      right: 690
+    },
+    [theme.breakpoints.between('xs', 'sm')]: {
+      right: theme.spacing.unit * 2,
+    },
   },
-});
+}
+};
 
 const mockCards = (cardsKey, classes, onClick, currentSelection) => {
   if (!Object.keys(config.cards).includes(cardsKey)) {
@@ -89,8 +108,8 @@ const GenericFunnelStep = ({
   currentPath,
 }) => {
   const transitionDuration = {
-    enter: theme.transitions.duration.enteringScreen,
-    exit: theme.transitions.duration.leavingScreen,
+    enter: 225,
+    exit: 195,
   };
   return (
     <Grid
@@ -105,7 +124,6 @@ const GenericFunnelStep = ({
         <Typography variant="title" className={classes.header}>
           {headerText}
         </Typography>
-
         {currentSelection && <Typography>Haz seleccionado: {currentSelection}!</Typography>}
       </Paper>
       <Grid item xs={12}>
@@ -126,7 +144,6 @@ const GenericFunnelStep = ({
 
 GenericFunnelStep.propTypes = {
   classes: PropTypes.shape({}).isRequired,
-  theme: PropTypes.shape({}).isRequired,
   headerText: PropTypes.string.isRequired,
   currentPath: PropTypes.string.isRequired,
   cardsKey: PropTypes.string.isRequired,
@@ -134,4 +151,4 @@ GenericFunnelStep.propTypes = {
   onSelection: PropTypes.func.isRequired,
 };
 
-export default withStyles(styles, { withTheme: true })(GenericFunnelStep);
+export default compose(withStyles(styles, { }), withWidth())(GenericFunnelStep);

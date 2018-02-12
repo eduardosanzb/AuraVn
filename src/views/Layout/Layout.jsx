@@ -22,11 +22,12 @@ const Components = {
 };
 
 const Layout = ({ location, selections, updateSelections }) => {
+  console.log(location.pathname);
   return (
     <div style={{ padding: 10 }}>
       <TransitionGroup>
         <CSSTransition
-          key={location.pathname.split('/')[1]}
+          key={location.key}
           classNames="fade"
           mountOnEnter={true}
           unmountOnExit={true}

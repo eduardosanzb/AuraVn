@@ -48,7 +48,7 @@ class App extends React.PureComponent {
             )}
           />
         </Hidden>
-        <div>
+        <div style={{ display: 'flex', justifyContent: 'center'}} >
         <div style={{ maxWidth: 800, maxHeight: 1200}}>
         <Hidden only={['xs', 'sm']} >
           <Route render={props => <this.HOCLayout {...props} />} />
