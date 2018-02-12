@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from 'material-ui/styles';
+import { Link } from 'react-router-dom';
 import Grid from 'material-ui/Grid';
 import Table, {
   TableBody,
@@ -8,6 +9,7 @@ import Table, {
   TableHead,
   TableRow
 } from 'material-ui/Table';
+import Button from 'material-ui/Button';
 import Typography from 'material-ui/Typography';
 import Paper from 'material-ui/Paper';
 
@@ -51,11 +53,13 @@ const styles = theme => ({
   }
 });
 const onlyWithStore = ({ storeValue }) => storeValue;
-const Results = ({ selections, classes }) => (
+
+const Results = ({ selections, classes, history }) => (
   <Grid container>
     <Paper className={classes.paperRoot}>
       <Typography variant="title" className={classes.header}>
-        AVN te recomienda
+        AVN te recomienda <br />
+        EN CONSTRUCCION 🚧🚧🚧🚧🚧
       </Typography>
     </Paper>
 
@@ -77,12 +81,24 @@ const Results = ({ selections, classes }) => (
             </TableRow>
           </TableHead>
           <TableBody>
-            {config.views.filter(onlyWithStore).map(({ storeValue, text }) => (
-              <TableRow key={storeValue}>
-                <TableCell>{text}</TableCell>
-                <TableCell>{selections[storeValue]}</TableCell>
-              </TableRow>
-            ))}
+            {config.views
+              .filter(onlyWithStore)
+              .map(({ storeValue, text, to }) => (
+                <TableRow key={storeValue}>
+                  <TableCell>{text}</TableCell>
+                  <TableCell>
+                    {selections[storeValue] || (
+                      <Button color="primary" onClick={() => {
+                        history.push(to)
+                        console.log('d');
+                      }}>
+                        Ir al paso
+                      </Button>
+
+                    )}
+                  </TableCell>
+                </TableRow>
+              ))}
             <TableRow>
               <TableCell>Altura</TableCell>
               <TableCell>
