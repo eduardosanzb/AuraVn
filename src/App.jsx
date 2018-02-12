@@ -1,7 +1,10 @@
 import React from 'react';
+import compose from 'recompose/compose';
+
 import Reboot from 'material-ui/Reboot';
 
 import Hidden from 'material-ui/Hidden';
+import withWidth from 'material-ui/utils/withWidth';
 
 import Layout from './views/Layout/Layout';
 import Menu from './views/Menu/Menu';
@@ -31,10 +34,11 @@ class App extends React.PureComponent {
   };
 
   render() {
+    console.log(this.props.width);
     return (
       <React.Fragment>
         <Reboot />
-        <Hidden mdUp>
+        <Hidden only={['md', 'lg', 'xl']} >
           <Route
             exact
             render={({ location }) => (
@@ -44,12 +48,16 @@ class App extends React.PureComponent {
             )}
           />
         </Hidden>
-        <Hidden mdDown>
+        <div>
+        <div style={{ maxWidth: 800, maxHeight: 1200}}>
+        <Hidden only={['xs', 'sm']} >
           <Route render={props => <this.HOCLayout {...props} />} />
         </Hidden>
+        </div>
+        </div>
       </React.Fragment>
     );
   }
 }
 
-export default App;
+export default withWidth()(App);

@@ -54,7 +54,7 @@ class AuraCard extends React.PureComponent {
 
   render() {
     const { classes, name, description, image, selected, onClick } = this.props;
-    const { flipped, imageLoaded } = this.state;
+    const { flipped } = this.state;
 
     return (
       <Card className={selected ? classes.selected : classes.root}>
