@@ -1,6 +1,4 @@
 import React from 'react';
-import compose from 'recompose/compose';
-
 import Reboot from 'material-ui/Reboot';
 
 import Hidden from 'material-ui/Hidden';
